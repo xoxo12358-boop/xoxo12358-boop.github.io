@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>投資壓力模擬器｜MVP 0.7</title>
+  <title>投資壓力模擬器｜MVP 0.7.1</title>
   <style>
     :root {
       --bg:#0b0f14; --panel:#121923; --panel2:#182231; --text:#eef3f8; --muted:#94a3b8;
@@ -46,52 +46,52 @@
     .game-summary{padding:9px 13px}.game-summary .market-head{align-items:center}.game-summary .week{font-size:14px;font-weight:800;color:#dbeafe}.mode-chip{font-size:10px;color:#94a3b8;margin-top:2px}
     .asset-rows{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.asset-mini{padding:10px 11px;min-width:0}.asset-mini .k{font-size:12px}.asset-mini .v{font-size:clamp(17px,4.7vw,24px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.asset-mini .perf{display:flex;justify-content:space-between;gap:7px;margin-top:7px;font-size:11px}.asset-mini .perf span:last-child{text-align:right}.cash-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:8px}.cash-item{border-top:1px solid #263449;padding:7px 3px 0;min-width:0}.cash-item .k{font-size:10px;color:var(--muted)}.cash-item .v{font-size:13px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .pressure-row{grid-template-columns:repeat(3,minmax(0,1fr))}.pressure-mini .v{font-size:14px}.context-card{border-color:#51431e}.context-line{font-size:13px}.context-line .small{font-size:12px}.income-alert{border-left:4px solid #f59e0b;background:#1c170c}.income-alert h2{font-size:17px}.income-delta{font-size:25px;font-weight:900;margin:6px 0}
-    .trade-box{grid-template-columns:1fr 1fr}.trade-box>div:last-child{grid-column:1/-1}.trade-box input{font-size:18px}.trade-panel .actions{margin-top:8px}
+    .trade-box{grid-template-columns:1fr 1fr}.trade-box>div:last-child{grid-column:1/-1}.trade-box input{font-size:18px}.trade-panel .actions{margin-top:8px}.trade-preview{margin-top:8px;padding:9px 10px;border:1px solid #34465d;border-radius:10px;background:#0b131d;font-size:13px;color:#cbd5e1}.trade-preview strong{font-size:16px;color:#eef3f8}
     .report-summary-card{padding:14px 15px}.report-summary-card h1{font-size:23px;margin:4px 0 5px}.report-scenario{font-size:13px;color:#cbd5e1;margin-bottom:9px}.report-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.report-metric{background:#0e1520;border:1px solid #263449;border-radius:10px;padding:8px}.report-metric .k{font-size:10px;color:var(--muted)}.report-metric .v{font-size:17px;font-weight:900;margin-top:2px}.report-highlights{margin-top:8px}.report-highlight{font-size:12px;padding:5px 0;border-top:1px solid #223047}.report-highlight:first-child{border-top:0}.report-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}.report-actions button{padding:10px;font-size:13px}
     details.report-detail{background:rgba(18,25,35,.96);border:1px solid var(--line);border-radius:13px;margin-bottom:8px;overflow:hidden}details.report-detail summary{padding:12px 14px;font-weight:800;cursor:pointer}details.report-detail .detail-body{padding:0 14px 14px}.report-detail .chart{height:150px}
     .download-note{font-size:10px;color:#64748b;margin-top:5px}.small-note{font-size:10px;color:#64748b}
     @media(max-width:440px){.mode-grid{grid-template-columns:1fr}.asset-rows{grid-template-columns:1fr 1fr}.asset-mini .v{font-size:17px}.cash-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.cash-strip .cash-item:last-child{grid-column:1/-1}.pressure-row{grid-template-columns:repeat(3,minmax(0,1fr))}.pressure-mini{padding:7px 6px}.pressure-mini .v{font-size:12px}.report-summary-card{padding:12px}.report-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 
-    /* MVP 0.7 */
+    /* MVP 0.7.1 */
     .mode-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .news-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:4px}.news-head h2{margin:0}.stage-badge{display:inline-block;max-width:52%;padding:4px 8px;border:1px solid #3a4b64;border-radius:999px;font-size:11px;font-weight:850;color:#dbeafe;background:#0e1724;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .news-head{display:grid;grid-template-columns:auto 1px minmax(0,1fr);align-items:center;gap:10px;margin-bottom:6px}.news-head h2{margin:0;font-size:16px}.stage-divider{width:1px;height:22px;background:#3a4b64}.stage-badge{display:block;min-width:0;font-size:16px;font-weight:900;color:#dbeafe;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .portfolio-card{padding-top:12px}.asset-head{display:flex;justify-content:space-between;gap:8px;align-items:center}.asset-head .k{font-size:13px;font-weight:850;color:#cbd5e1}.asset-head .weight{font-size:11px;font-weight:800;color:#94a3b8;white-space:nowrap}.asset-mini .perf{font-size:14px;font-weight:850;margin-top:8px}.asset-mini .perf span{line-height:1.25}.asset-mini .v{margin-top:5px}
     .cash-strip{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.cash-item.total-mini .v{font-size:12px}.cash-item.total-mini{opacity:.92}
-    .pressure-row{grid-template-columns:1.35fr .9fr .9fr}.pressure-mini.primary-loss{border-color:#41546e;background:#101925}.pressure-mini.primary-loss .k{font-weight:850}.pressure-mini.primary-loss .v{font-size:20px;font-weight:950;letter-spacing:-.02em}.pressure-mini:not(.primary-loss) .v{font-size:14px}
+    .pressure-row{grid-template-columns:1.35fr .9fr .9fr}.pressure-mini.primary-loss{border-color:#41546e;background:#101925}.pressure-mini.primary-loss .k{font-weight:850}.pressure-mini.primary-loss .v{font-size:26px;font-weight:950;letter-spacing:-.025em}.pressure-mini:not(.primary-loss) .v{font-size:14px}
     .context-line{padding:8px 0}.context-title{font-size:15px;line-height:1.3}.context-line .small{font-size:12px;line-height:1.35}.context-neutral{font-size:13px}
     .decision-dock{grid-template-columns:1fr 1fr}.decision-dock .trade-first{order:1}.decision-dock .primary-next{order:2}.decision-dock button{min-width:0;padding-left:8px;padding-right:8px}
     .month-arrival h2{font-size:22px;margin-bottom:5px}.month-arrival .month-question{font-size:14px;color:#cbd5e1;margin:0 0 10px}.month-arrival .month-amount{font-size:13px;color:#94a3b8;margin-bottom:12px}
     .title-card{border:1px solid #5d4a19;background:linear-gradient(180deg,#201a0c,#15130e);border-radius:12px;padding:11px 12px;margin:10px 0}.title-card .eyebrow{font-size:10px;color:#fcd34d;font-weight:900;letter-spacing:.08em}.title-card .main-title{font-size:23px;font-weight:950;margin-top:2px}.title-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}.title-tag{font-size:11px;padding:3px 7px;border-radius:999px;background:#2a2415;color:#fde68a;border:1px solid #665321}
     .report-actions{grid-template-columns:1.2fr 1fr 1fr}.share-status{font-size:11px;color:#94a3b8;margin-top:6px;min-height:1.4em}
-    @media(max-width:440px){.mode-grid{grid-template-columns:1fr}.cash-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.cash-strip .cash-item:last-child{grid-column:auto}.pressure-row{grid-template-columns:1.25fr .9fr .9fr}.pressure-mini.primary-loss .v{font-size:16px}.asset-mini .perf{font-size:13px}.decision-dock{grid-template-columns:1fr 1fr}.decision-dock button{font-size:13px;min-height:46px}.report-actions{grid-template-columns:1fr 1fr}.report-actions button:first-child{grid-column:1/-1}.stage-badge{max-width:48%;font-size:10px}.title-card .main-title{font-size:21px}}
+    @media(max-width:440px){.mode-grid{grid-template-columns:1fr}.cash-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.cash-strip .cash-item:last-child{grid-column:auto}.pressure-row{grid-template-columns:1.25fr .9fr .9fr}.pressure-mini.primary-loss .v{font-size:23px}.asset-mini .perf{font-size:13px}.decision-dock{grid-template-columns:1fr 1fr}.decision-dock button{font-size:13px;min-height:46px}.report-actions{grid-template-columns:1fr 1fr}.report-actions button:first-child{grid-column:1/-1}.stage-badge{font-size:16px}.title-card .main-title{font-size:21px}}
 
 
-    /* MVP 0.7 weekly reveal */
+    /* MVP 0.7.1 weekly reveal */
     .brand-line{display:flex;align-items:baseline;gap:7px;min-width:0}.top-week{font-size:12px;font-weight:850;color:#cbd5e1;white-space:nowrap}
     .turn-transition{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(4,9,15,.88);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);opacity:1;transition:opacity .16s ease;overflow:auto}
     .turn-transition.hidden{display:none!important}.turn-transition-panel{width:min(460px,94vw);padding:24px 22px;border:1px solid #334155;border-radius:20px;background:#101823;box-shadow:0 20px 70px rgba(0,0,0,.48);animation:turnPulse .28s ease-out}
-    .turn-transition-head{text-align:center}.turn-transition-kicker{font-size:12px;font-weight:800;color:#94a3b8;letter-spacing:.04em}.turn-transition-title{font-size:28px;line-height:1.2;font-weight:950;margin-top:8px;color:#eef3f8}.turn-transition-title.negative{color:#4ade80}.turn-transition-title.positive{color:#f87171}.turn-transition-detail{font-size:14px;color:#cbd5e1;margin-top:9px}
-    .reveal-stack{display:grid;gap:9px;margin-top:17px}.reveal-card{border:1px solid #29384d;border-radius:13px;background:#0d151f;padding:11px 12px;opacity:0;transform:translateY(7px);transition:opacity .2s ease,transform .2s ease}.reveal-card.show{opacity:1;transform:translateY(0)}.reveal-source{font-size:10px;font-weight:900;color:#93c5fd;letter-spacing:.05em;margin-bottom:4px}.reveal-source.personal{color:#fcd34d}.reveal-text{font-size:14px;line-height:1.5;color:#e2e8f0}.transition-actions{margin-top:13px}.transition-actions button{width:100%;min-height:46px}.transition-actions.hidden{display:none!important}
+    .turn-transition-head{text-align:center}.turn-transition-kicker{font-size:12px;font-weight:800;color:#94a3b8;letter-spacing:.04em}.turn-transition-title{font-size:28px;line-height:1.2;font-weight:950;margin-top:8px;color:#eef3f8}.turn-transition-title.negative{color:#4ade80}.turn-transition-title.positive{color:#f87171}.turn-transition-detail{font-size:22px;line-height:1.25;font-weight:950;color:#e2e8f0;margin-top:10px;letter-spacing:-.02em}.turn-transition-detail.negative{color:#4ade80}.turn-transition-detail.positive{color:#f87171}.transition-unrealized{margin:10px auto 0;padding:9px 12px;border:1px solid #2d3c50;border-radius:12px;background:#0c141e;font-size:14px;color:#94a3b8}.transition-unrealized strong{display:block;margin-top:2px;font-size:20px;color:#eef3f8}.transition-unrealized strong.negative{color:#4ade80}.transition-unrealized strong.positive{color:#f87171}
+    .reveal-stack{display:grid;gap:9px;margin-top:17px}.reveal-card{border:1px solid #29384d;border-radius:13px;background:#0d151f;padding:11px 12px;opacity:0;transform:translateY(7px);transition:opacity .2s ease,transform .2s ease}.reveal-card.show{opacity:1;transform:translateY(0)}.reveal-source{font-size:11px;font-weight:900;color:#93c5fd;letter-spacing:.05em;margin-bottom:5px}.reveal-source.personal{color:#fcd34d}.reveal-text{font-size:16px;line-height:1.55;color:#e2e8f0}.reveal-secondary{margin-top:8px;padding-top:8px;border-top:1px solid #223047}.reveal-secondary-label{display:block;font-size:10px;font-weight:900;color:#94a3b8;margin-bottom:3px}.transition-actions{margin-top:13px}.transition-actions button{width:100%;min-height:46px}.transition-actions.hidden{display:none!important}
     @keyframes turnPulse{from{transform:scale(.97);opacity:.25}to{transform:scale(1);opacity:1}}
-    @media(max-width:440px){.brand-line{gap:5px}.top-week{font-size:11px}.turn-transition{padding:12px}.turn-transition-panel{padding:21px 16px}.turn-transition-title{font-size:25px}.reveal-text{font-size:13px}}
+    @media(max-width:440px){.brand-line{gap:5px}.top-week{font-size:11px}.turn-transition{padding:12px}.turn-transition-panel{padding:21px 16px}.turn-transition-title{font-size:25px}.turn-transition-detail{font-size:21px}.transition-unrealized strong{font-size:19px}.reveal-text{font-size:16px}}
 
 
-    /* MVP 0.7 market chart + rolling history */
-    .market-chart-card{padding:12px 14px 11px;margin-bottom:9px;overflow:hidden}.market-chart-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px}.market-chart-head h2{font-size:17px;margin:0}.market-chart-sub{font-size:10px;color:#64748b;margin-top:2px}.ma-legend{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;font-size:10px;color:#94a3b8}.ma-key{display:flex;align-items:center;gap:4px;white-space:nowrap}.ma-dot{width:13px;height:2px;border-radius:999px;display:inline-block}.ma5-dot{background:#facc15}.ma10-dot{background:#60a5fa}.candle-up-dot{background:#f87171}.candle-down-dot{background:#4ade80}.market-canvas-wrap{position:relative;width:100%;height:218px;border:1px solid #263449;border-radius:13px;background:#0b121b;overflow:hidden}.market-canvas-wrap canvas{display:block;width:100%;height:100%}.market-chart-meta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:7px;font-size:10px;color:#64748b}.market-chart-meta strong{color:#cbd5e1}
+    /* MVP 0.7.1 market chart + rolling history */
+    .market-chart-card{padding:12px 14px 11px;margin-bottom:9px;overflow:hidden}.market-chart-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px}.market-chart-head h2{font-size:18px;margin:0}.market-index-now{font-size:21px;font-weight:950;letter-spacing:-.02em;margin-top:3px}.market-chart-sub{font-size:10px;color:#64748b;margin-top:2px}.ma-legend{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;font-size:10px;color:#94a3b8}.ma-key{display:flex;align-items:center;gap:4px;white-space:nowrap}.ma-dot{width:13px;height:2px;border-radius:999px;display:inline-block}.ma5-dot{background:#facc15}.ma10-dot{background:#60a5fa}.candle-up-dot{background:#f87171}.candle-down-dot{background:#4ade80}.market-canvas-wrap{position:relative;width:100%;height:218px;border:1px solid #263449;border-radius:13px;background:#0b121b;overflow:hidden}.market-canvas-wrap canvas{display:block;width:100%;height:100%}.market-chart-meta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:7px;font-size:10px;color:#64748b}.market-chart-meta strong{color:#cbd5e1}
     .history-shell{margin-top:14px}.history-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 2px 8px}.history-head h2{font-size:17px;margin:0}.history-list{display:grid;gap:8px}.week-log{border:1px solid #263449;border-radius:13px;background:rgba(13,21,31,.92);padding:11px 12px}.week-log.current{border-color:#465b77;background:#101a27}.week-log-head{display:flex;align-items:center;justify-content:space-between;gap:8px}.week-log-week{font-size:13px;font-weight:900}.week-log-return{font-size:15px;font-weight:950}.week-log-stage{font-size:10px;color:#94a3b8;margin-top:2px}.week-log-row{display:grid;grid-template-columns:62px 1fr;gap:7px;padding-top:7px;margin-top:7px;border-top:1px solid #223047;font-size:12px;line-height:1.45}.week-log-label{font-size:10px;font-weight:900;color:#93c5fd}.week-log-label.personal{color:#fcd34d}.week-log-label.decision{color:#c4b5fd}.week-log-label.event{color:#fca5a5}.week-log-empty{font-size:12px;color:#64748b;padding:10px 2px}
     .transition-chart-wrap{height:150px;margin-top:14px;border:1px solid #29384d;border-radius:13px;background:#0b121b;overflow:hidden;opacity:.96}.transition-chart-wrap canvas{display:block;width:100%;height:100%}
     @media(max-width:440px){.market-chart-card{padding:10px 10px 9px}.market-canvas-wrap{height:190px}.market-chart-head{align-items:center}.ma-legend{gap:5px}.week-log{padding:10px}.week-log-row{grid-template-columns:54px 1fr;gap:5px}.transition-chart-wrap{height:132px}.turn-transition-panel{width:min(480px,96vw)}}
 
 
-    /* MVP 0.7 decision pressure */
+    /* MVP 0.7.1 decision pressure */
     .setup-contract{border-color:#43566f;background:linear-gradient(180deg,#111b28,#0f1722)}
     .contract-list{display:grid;gap:9px;margin-top:10px}.contract-check{display:flex;gap:10px;align-items:flex-start;padding:10px 11px;border:1px solid #2d3c50;border-radius:11px;background:#0d151f;font-size:13px;color:#dbeafe}.contract-check input{width:auto;margin-top:3px;accent-color:#93c5fd}.contract-note{font-size:11px;color:#94a3b8;margin-top:9px}
     .cashflow-rule-box{border:1px solid #2d3c50;border-radius:12px;padding:11px;background:#0e1520}.cashflow-rule-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:9px}.cashflow-extra.hidden{display:none!important}.cashflow-auto{border-left:4px solid #60a5fa;background:#0d1724}.cashflow-auto h2{font-size:18px;margin-bottom:5px}.cashflow-auto .flow-result{font-size:14px;font-weight:850;color:#dbeafe;margin-top:5px}.cashflow-review{border-left:4px solid #f59e0b;background:#1b170d}.cashflow-review h2{font-size:19px;margin-bottom:5px}.cashflow-review .review-reason{font-size:13px;color:#fde68a;margin-bottom:10px}
     .action-card{border:1px solid #52657f;background:linear-gradient(180deg,#111c2a,#0d1621);padding:15px 16px;margin-bottom:10px}.action-card-head{display:flex;justify-content:space-between;gap:8px;align-items:center}.action-card h2{font-size:20px;margin:0}.action-card .action-reason{font-size:12px;color:#fcd34d;font-weight:850}.action-card .action-context{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:10px 0}.action-card .action-stat{border:1px solid #2a394d;border-radius:10px;background:#0c141e;padding:8px}.action-card .action-stat .k{font-size:10px;color:#94a3b8}.action-card .action-stat .v{font-size:15px;font-weight:900;margin-top:2px}.action-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.action-options button{min-height:48px}.action-intent-note{font-size:12px;color:#cbd5e1;margin-top:10px;padding:9px;border-radius:9px;background:#0b121b;border:1px solid #263449}
     .boot-transition{position:fixed;inset:0;z-index:10020;display:flex;align-items:center;justify-content:center;background:#060b11;padding:18px}.boot-transition.hidden{display:none!important}.boot-panel{width:min(460px,94vw);text-align:center}.boot-kicker{font-size:11px;color:#64748b;letter-spacing:.12em;font-weight:900}.boot-line{font-size:25px;font-weight:950;color:#eef3f8;line-height:1.35;margin-top:14px;min-height:68px;display:flex;align-items:center;justify-content:center}.boot-dots{font-size:12px;color:#93c5fd;margin-top:12px;letter-spacing:.25em}
     .turn-transition-panel.deep-stress{border-color:#7f1d1d;box-shadow:0 20px 80px rgba(127,29,29,.30)}.reveal-card.extreme{border-color:#7f1d1d;background:linear-gradient(180deg,#260c10,#170b0d)}.reveal-card.extreme .reveal-source,.reveal-card.extreme .reveal-source.personal{color:#f87171;font-size:12px}.reveal-card.extreme .reveal-text{color:#ff626d;font-size:21px;line-height:1.45;font-weight:950;letter-spacing:.01em}
-    .reveal-source{font-size:12px}.reveal-text{font-size:17px;line-height:1.62}.turn-transition-detail{font-size:15px}
+    .reveal-source{font-size:12px}.reveal-text{font-size:17px;line-height:1.62}.turn-transition-detail{font-size:22px}
     @media(max-width:440px){.cashflow-rule-grid{grid-template-columns:1fr}.action-card{padding:13px 12px}.action-card .action-context{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.action-card .action-stat{padding:7px 6px}.action-card .action-stat .v{font-size:13px}.action-options{grid-template-columns:1fr 1fr}.action-options button{font-size:13px;padding:9px 7px}.boot-line{font-size:22px}.reveal-text{font-size:16px}.reveal-card.extreme .reveal-text{font-size:19px}}
 
   </style>
@@ -99,7 +99,7 @@
 <body>
 <div class="wrap">
   <div class="topbar">
-    <div><div class="brand-line"><div class="brand">投資壓力模擬器</div><span class="top-week hidden" id="topWeekLabel">第 1 / 26 週</span></div><div class="small muted">MVP 0.7｜決策壓力版</div></div>
+    <div><div class="brand-line"><div class="brand">投資壓力模擬器</div><span class="top-week hidden" id="topWeekLabel">第 1 / 26 週</span></div><div class="small muted">MVP 0.7.1｜決策壓力版</div></div>
     <div class="inline"><span class="badge" id="saveBadge">未開始</span><button class="secondary hidden" id="resetBtn">清除本機資料</button></div>
   </div>
 
@@ -169,15 +169,15 @@
   <section id="game" class="hidden">
     <div class="card market-chart-card">
       <div class="market-chart-head">
-        <div><h2>市場週 K</h2><div class="market-chart-sub">只顯示已發生的市場路徑｜台灣慣例：漲紅跌綠</div></div>
+        <div><h2>大盤指數走勢</h2><div class="market-index-now" id="marketIndexNow">45,000（+0.0%）</div><div class="market-chart-sub">起始 45,000 點｜每週 5 根日 K｜台灣慣例：漲紅跌綠</div></div>
         <div class="ma-legend"><span class="ma-key"><i class="ma-dot ma5-dot"></i>5 週均線</span><span class="ma-key"><i class="ma-dot ma10-dot"></i>10 週均線</span></div>
       </div>
-      <div class="market-canvas-wrap"><canvas id="marketCanvas" aria-label="市場週K線"></canvas></div>
+      <div class="market-canvas-wrap"><canvas id="marketCanvas" aria-label="大盤指數日K線"></canvas></div>
       <div class="market-chart-meta"><span id="marketOHLCMeta">本週 OHLC</span><span id="marketMAMeta">均線將隨週次形成</span></div>
     </div>
 
     <div class="card news-compact">
-      <div class="news-head"><h2>本週市場敘事</h2><span class="stage-badge" id="arcTag">市場階段</span></div>
+      <div class="news-head"><h2>本週市場敘事</h2><span class="stage-divider" aria-hidden="true"></span><span class="stage-badge" id="arcTag">市場階段</span></div>
       <div id="news"></div>
     </div>
 
@@ -220,6 +220,7 @@
         <div><label>金額（元）</label><input id="tradeAmount" type="number" min="0" step="1000" placeholder="直接輸入金額"></div>
       </div>
       <div class="small muted" id="tradeHint"></div>
+      <div class="trade-preview hidden" id="tradePreview"></div>
       <div class="actions"><button id="commitTurnBtn">確認調整，進入下一週</button><button class="secondary" id="tradeCloseBtn">收起操作區</button></div>
     </div>
 
@@ -257,21 +258,23 @@
         <div class="turn-transition-kicker" id="transitionKicker">本週結束</div>
         <div class="turn-transition-title" id="transitionTitle">市場推進中…</div>
         <div class="turn-transition-detail" id="transitionDetail">下一週的結果即將揭曉</div>
+        <div class="transition-unrealized hidden" id="transitionUnrealized"><span>目前未實現損益</span><strong id="transitionUnrealizedValue">NT$ 0</strong></div>
       </div>
-      <div class="transition-chart-wrap"><canvas id="transitionMarketCanvas" aria-label="本週新K線"></canvas></div>
+      <div class="transition-chart-wrap"><canvas id="transitionMarketCanvas" aria-label="本週 5 根日K"></canvas></div>
       <div class="reveal-stack">
-        <div class="reveal-card" id="transitionNewsCard"><div class="reveal-source">財經新聞</div><div class="reveal-text" id="transitionNewsText"></div></div>
+        <div class="reveal-card" id="transitionNewsCard"><div class="reveal-source" id="transitionMarketSource">財經新聞</div><div class="reveal-text" id="transitionNewsText"></div></div>
         <div class="reveal-card" id="transitionPressureCard"><div class="reveal-source personal" id="transitionPressureSource">自我 OS</div><div class="reveal-text" id="transitionPressureText"></div></div>
       </div>
       <div class="transition-actions hidden" id="transitionActions"><button id="transitionContinueBtn">查看本週完整狀況</button></div>
     </div>
   </div>
 
-  <div class="footer-note">MVP 0.7｜僅為互動模擬與教育用途，不構成任何個人化投資建議。</div>
+  <div class="footer-note">MVP 0.7.1｜僅為互動模擬與教育用途，不構成任何個人化投資建議。</div>
 </div>
 <script>
 (() => {
-  const STORAGE_KEY = 'investment_stress_mvp_v07';
+  const STORAGE_KEY = 'investment_stress_mvp_v071';
+  const MARKET_INDEX_BASE = 45000;
   const fmt = new Intl.NumberFormat('zh-TW', { maximumFractionDigits: 0 });
   const pct = (x, d=1) => `${x >= 0 ? '+' : ''}${x.toFixed(d)}%`;
   const money = x => `NT$ ${fmt.format(Math.round(x || 0))}`;
@@ -436,9 +439,38 @@
     return bars;
   }
 
+  function generateMarketDailyOHLC(levels, seed){
+    const bars=[]; let prevClose=MARKET_INDEX_BASE*((levels?.[0]||100)/100), seq=0;
+    for(let w=1;w<(levels?.length||0);w++){
+      const rng=mulberry32(hashSeed(`${seed}-daily-ohlc-${w}`));
+      const targetClose=MARKET_INDEX_BASE*(levels[w]/100); const totalLog=Math.log(Math.max(.000001,targetClose/prevClose));
+      const strong=Math.abs(Math.exp(totalLog)-1)>=.04;
+      let weights=strong?[.28,.24,.25,.28,-.05]:[.38,.28,.39,-.03,-.02];
+      for(let i=weights.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[weights[i],weights[j]]=[weights[j],weights[i]];}
+      const amp=Math.min(.0028,Math.max(.0007,Math.abs(totalLog)*.045));
+      let noise=Array.from({length:5},()=> (rng()-.5)*2*amp); const mean=noise.reduce((a,b)=>a+b,0)/5; noise=noise.map(x=>x-mean);
+      const logs=weights.map((x,i)=>totalLog*x+noise[i]); logs[4]+=totalLog-logs.reduce((a,b)=>a+b,0);
+      const direction=Math.sign(totalLog);
+      if(direction!==0 && !logs.some(x=>x*direction<0)){const opp=.0008+Math.min(.0025,Math.abs(totalLog)*.08);let i=0;for(let k=1;k<5;k++)if(Math.abs(logs[k])<Math.abs(logs[i]))i=k;logs[i]=-direction*opp;let j=i===0?1:0;for(let k=0;k<5;k++)if(k!==i&&Math.abs(logs[k])>Math.abs(logs[j]))j=k;logs[j]+=totalLog-logs.reduce((a,b)=>a+b,0);}
+      for(let d=0;d<5;d++){
+        const open=prevClose; const close=d===4?targetClose:open*Math.exp(logs[d]);
+        const body=Math.abs(close/open-1); const wick=.0008+rng()*.0032+Math.min(.0035,body*.18);
+        const high=Math.max(open,close)*(1+wick*(.65+rng()*.7)); const low=Math.max(.01,Math.min(open,close)*(1-wick*(.65+rng()*.7)));
+        bars.push({week:w,day:d+1,seq:++seq,open,high,low,close}); prevClose=close;
+      }
+      prevClose=targetClose;
+    }
+    return bars;
+  }
+
   function ensureV07State(){
     if(!state)return;
     if(!state.marketOHLC && state.marketLevels)state.marketOHLC=generateMarketOHLC(state.marketLevels,state.seed||1);
+    if(!state.marketDailyOHLC && state.marketLevels)state.marketDailyOHLC=generateMarketDailyOHLC(state.marketLevels,state.seed||1);
+    if(state.stockCostBasis==null)state.stockCostBasis=state.stockValue||0;
+    if(state.bondCostBasis==null)state.bondCostBasis=state.bondValue||0;
+    if(state.realizedPL==null)state.realizedPL=0;
+    state.version='0.7.1';
     if(!Array.isArray(state.weekSnapshots))state.weekSnapshots=[];
     if(!state.cashflowPolicy)state.cashflowPolicy={mode:'allInvest',investPct:100,reserveTarget:state.initial?.reserve||0};
     if(!state.stressDirector)state.stressDirector={triggerCount:0,bullScheduled:false,crashScheduled:false,events:[],arcOverrides:{}};
@@ -476,15 +508,15 @@
     const initialInvestment=stock+bond+investCash; const initialTotal=initialInvestment+reserve; const initialStockWeight=initialInvestment>0?stock/initialInvestment:0;
     const standardScenarios=SCENARIOS.filter(s=>s.id!=='mad_bull');
     const scenario=(initialStockWeight<.50 && rng()<.33)?SCENARIOS.find(s=>s.id==='mad_bull'):pick(rng,standardScenarios);
-    const market=generatePath(scenario,rng); const marketOHLC=generateMarketOHLC(market.levels,seed); const bondReturns=generateBondReturns(26,rng,scenario.id);
+    const market=generatePath(scenario,rng); const marketOHLC=generateMarketOHLC(market.levels,seed); const marketDailyOHLC=generateMarketDailyOHLC(market.levels,seed); const bondReturns=generateBondReturns(26,rng,scenario.id);
     const cashflowPolicy={mode:$('cashflowRule').value,investPct:clamp(+$('cashflowInvestPct').value||0,0,100),reserveTarget:Math.max(0,+$('cashflowReserveTarget').value||0)};
     state={
-      version:'0.7', mode:'normal', seed, scenarioId:scenario.id, week:0, endWeek:26, finished:false,
+      version:'0.7.1', mode:'normal', seed, scenarioId:scenario.id, week:0, endWeek:26, finished:false,
       baseMonthlyCashFlow:+$('monthlyCash').value,currentMonthlyCashFlow:+$('monthlyCash').value,monthlyCashFlow:+$('monthlyCash').value,
-      stockValue:stock,bondValue:bond,investCash,reserve,
+      stockValue:stock,bondValue:bond,investCash,reserve,stockCostBasis:stock,bondCostBasis:bond,realizedPL:0,
       initial:{stock,bond,cash:investCash,reserve,total:initialTotal,investment:initialInvestment},
       strategy:{fixedInvest:$('fixedInvest').value,downRule:$('downRule').value,allocationRule:$('allocationRule').value,reserveRule:$('reserveRule').value},
-      marketLevels:market.levels, marketReturns:market.returns, marketOHLC, bondReturns,
+      marketLevels:market.levels, marketReturns:market.returns, marketOHLC, marketDailyOHLC, bondReturns,
       marketLevel:100, athLevel:100, drawdown:0, weekReturn:0,
       bondLevel:100,bondAthLevel:100,bondTotalReturn:0,bondWeekReturn:0,
       portfolioIndex:100,portfolioPeakIndex:100,portfolioDrawdown:0,portfolioWeekReturn:0,maxPlayerDrawdown:0,
@@ -510,6 +542,13 @@
   function stockWeight(){const inv=investmentAssets();return inv>0?state.stockValue/inv:0}
   function totalAssets(){return investmentAssets()+state.reserve}
   function equivalentInvestmentPL(){return (state.initial?.investment||0)*((state.portfolioIndex||100)/100-1)}
+  function unrealizedPL(){return (state.stockValue-(state.stockCostBasis||0))+(state.bondValue-(state.bondCostBasis||0))}
+  function reducePositionByValue(key,amount){
+    const basisKey=key==='stockValue'?'stockCostBasis':key==='bondValue'?'bondCostBasis':null;
+    if(!basisKey){state[key]-=amount;return 0}
+    const before=Math.max(0,state[key]||0),basis=Math.max(0,state[basisKey]||0); const basisOut=before>0?Math.min(basis,basis*(amount/before)):0;
+    state[key]=Math.max(0,before-amount);state[basisKey]=Math.max(0,basis-basisOut);const realized=amount-basisOut;state.realizedPL=(state.realizedPL||0)+realized;return realized;
+  }
   function updateDerived(){
     state.minInvestCash=Math.min(state.minInvestCash ?? state.investCash,state.investCash); state.minReserve=Math.min(state.minReserve ?? state.reserve,state.reserve);
     const sw=stockWeight(); state.maxStockWeight=Math.max(state.maxStockWeight||0,sw); state.minStockWeight=Math.min(state.minStockWeight ?? sw,sw);
@@ -690,7 +729,7 @@
   function rebuildMarketPathFromReturns(startWeek, modifiedReturns){
     const levels=[...state.marketLevels];
     for(let w=startWeek;w<levels.length;w++)levels[w]=levels[w-1]*(1+(modifiedReturns[w]||0));
-    state.marketLevels=levels; state.marketReturns=modifiedReturns; state.marketOHLC=generateMarketOHLC(levels,state.seed);
+    state.marketLevels=levels; state.marketReturns=modifiedReturns; state.marketOHLC=generateMarketOHLC(levels,state.seed); state.marketDailyOHLC=generateMarketDailyOHLC(levels,state.seed);
   }
 
   function applyDirectorEvent(event){
@@ -711,7 +750,7 @@
     ensureV07State(); const d=state.stressDirector;if(d.triggerCount+d.events.filter(e=>!e.applied).length>=2)return;
     const remaining=state.endWeek-state.week;if(remaining<5)return;
     const after=stockWeight(), rng=mulberry32(hashSeed(`${state.seed}-director-${state.week}-${action}-${amount}`));
-    if(action==='sell'&&asset==='stock'&&!d.bullScheduled&&beforeStockWeight-after>=.12&&rng()<.33){const delay=1+Math.floor(rng()*3);d.events.push({type:'bull',sourceWeek:state.week,triggerWeek:Math.min(state.endWeek,state.week+delay),applied:false});d.bullScheduled=true;}
+    if(action==='sell'&&asset==='stock'&&!d.bullScheduled&&beforeStockWeight>0&&((beforeStockWeight-after)/beforeStockWeight)>=.30&&rng()<.33){const delay=1+Math.floor(rng()*3);d.events.push({type:'bull',sourceWeek:state.week,triggerWeek:Math.min(state.endWeek,state.week+delay),applied:false});d.bullScheduled=true;}
     if(action==='buy'&&asset==='stock'&&!d.crashScheduled&&amount>=beforeTotal*.25&&rng()<.33){const delay=1+Math.floor(rng()*3);d.events.push({type:'crash',sourceWeek:state.week,triggerWeek:Math.min(state.endWeek,state.week+delay),applied:false});d.crashScheduled=true;}
   }
 
@@ -802,52 +841,60 @@
 
 
   function movingAverageForWeek(week,period){
-    if(week<period)return null;
-    const bars=state.marketOHLC||[]; let sum=0;
-    for(let w=week-period+1;w<=week;w++){if(!bars[w])return null;sum+=bars[w].close;}
+    if(week<period)return null; let sum=0;
+    for(let w=week-period+1;w<=week;w++){const level=state.marketLevels?.[w];if(level==null)return null;sum+=MARKET_INDEX_BASE*(level/100);}
     return sum/period;
   }
 
   function renderMarketChart(canvas, uptoWeek=state.week, options={}){
     if(!canvas||!state)return; ensureV07State();
-    const bars=uptoWeek>0?(state.marketOHLC||[]).slice(1,uptoWeek+1).filter(Boolean):[];
+    const all=(state.marketDailyOHLC||[]).filter(b=>b.week<=uptoWeek); const wp=options.weekProgress==null?1:clamp(options.weekProgress,0,1);
+    const latestProgress=wp*5, fullDays=Math.floor(latestProgress), partial=latestProgress-fullDays;
+    const drawBars=[];
+    for(const b of all){
+      if(b.week<uptoWeek||wp>=1){drawBars.push({...b,_p:1});continue}
+      if(b.week===uptoWeek){if(b.day<=fullDays)drawBars.push({...b,_p:1});else if(b.day===fullDays+1&&partial>0)drawBars.push({...b,_p:partial});}
+    }
     const rect=canvas.getBoundingClientRect(); const cssW=Math.max(280,rect.width||360), cssH=Math.max(120,rect.height||200);
     const dpr=Math.min(2,window.devicePixelRatio||1); canvas.width=Math.round(cssW*dpr); canvas.height=Math.round(cssH*dpr);
-    const ctx=canvas.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,cssW,cssH);
-    ctx.fillStyle='#0b121b';ctx.fillRect(0,0,cssW,cssH);
-    if(!bars.length){ctx.fillStyle='#64748b';ctx.font='12px sans-serif';ctx.fillText('市場路徑尚未開始',14,24);return;}
-    const left=34,right=10,top=12,bottom=24,w=cssW-left-right,h=cssH-top-bottom;
-    const visibleHigh=Math.max(...bars.map(b=>b.high)), visibleLow=Math.min(...bars.map(b=>b.low));
-    const pad=Math.max((visibleHigh-visibleLow)*.10,visibleHigh*.015); const yMax=visibleHigh+pad,yMin=Math.max(.01,visibleLow-pad);
-    const y=v=>top+(yMax-v)/(yMax-yMin||1)*h;
+    const ctx=canvas.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,cssW,cssH);ctx.fillStyle='#0b121b';ctx.fillRect(0,0,cssW,cssH);
+    if(!drawBars.length){ctx.fillStyle='#64748b';ctx.font='12px sans-serif';ctx.fillText('大盤路徑尚未開始',14,24);return;}
+    const left=46,right=10,top=12,bottom=24,w=cssW-left-right,h=cssH-top-bottom;
+    const partialBars=drawBars.map(b=>{if((b._p||1)>=1)return b;const p=b._p;return {...b,high:b.open+(b.high-b.open)*p,low:b.open+(b.low-b.open)*p,close:b.open+(b.close-b.open)*p};});
+    const visibleHigh=Math.max(...partialBars.map(b=>b.high)),visibleLow=Math.min(...partialBars.map(b=>b.low));
+    const pad=Math.max((visibleHigh-visibleLow)*.10,visibleHigh*.008);const yMax=visibleHigh+pad,yMin=Math.max(.01,visibleLow-pad);const y=v=>top+(yMax-v)/(yMax-yMin||1)*h;
     ctx.strokeStyle='#1e2a3a';ctx.lineWidth=1;ctx.fillStyle='#64748b';ctx.font='9px -apple-system,BlinkMacSystemFont,sans-serif';ctx.textAlign='right';ctx.textBaseline='middle';
-    for(let i=0;i<4;i++){const yy=top+h*i/3;ctx.beginPath();ctx.moveTo(left,yy);ctx.lineTo(cssW-right,yy);ctx.stroke();const val=yMax-(yMax-yMin)*i/3;ctx.fillText(val.toFixed(1),left-4,yy);}
-    const slots=Math.max(state.endWeek||26,26), step=w/slots, candleW=Math.max(3,Math.min(9,step*.56));
-    const lastProgress=options.lastProgress==null?1:clamp(options.lastProgress,0,1);
-    bars.forEach((b,idx)=>{
-      const wk=b.week,x=left+(wk-.5)*step; let open=b.open,high=b.high,low=b.low,close=b.close;
-      if(wk===uptoWeek && lastProgress<1){high=open+(high-open)*lastProgress;low=open+(low-open)*lastProgress;close=open+(close-open)*lastProgress;}
-      const up=close>=open, color=up?'#f87171':'#4ade80';ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=1.2;
-      ctx.beginPath();ctx.moveTo(x,y(high));ctx.lineTo(x,y(low));ctx.stroke();
-      const yo=y(open),yc=y(close),bodyTop=Math.min(yo,yc),bodyH=Math.max(2,Math.abs(yc-yo));ctx.fillRect(x-candleW/2,bodyTop,candleW,bodyH);
-      if(wk%5===0||wk===1||wk===uptoWeek){ctx.fillStyle='#64748b';ctx.font='9px sans-serif';ctx.textAlign='center';ctx.textBaseline='top';ctx.fillText(String(wk),x,cssH-bottom+6);}
-    });
-    function drawMA(period,color){
-      ctx.strokeStyle=color;ctx.lineWidth=1.6;ctx.beginPath();let started=false;
-      for(let wk=period;wk<=uptoWeek;wk++){const val=movingAverageForWeek(wk,period);if(val==null)continue;const x=left+(wk-.5)*step,yy=y(val);if(!started){ctx.moveTo(x,yy);started=true}else ctx.lineTo(x,yy);}
-      if(started)ctx.stroke();
-    }
+    for(let i=0;i<4;i++){const yy=top+h*i/3;ctx.beginPath();ctx.moveTo(left,yy);ctx.lineTo(cssW-right,yy);ctx.stroke();const val=yMax-(yMax-yMin)*i/3;ctx.fillText(Math.round(val).toLocaleString('zh-TW'),left-4,yy);}
+    const slots=Math.max((state.endWeek||26)*5,130),step=w/slots,candleW=Math.max(.9,Math.min(3.2,step*.72));const xForSeq=seq=>left+(seq-.5)*step;
+    partialBars.forEach(b=>{const x=xForSeq(b.seq),up=b.close>=b.open,color=up?'#f87171':'#4ade80';ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,y(b.high));ctx.lineTo(x,y(b.low));ctx.stroke();const yo=y(b.open),yc=y(b.close),bodyTop=Math.min(yo,yc),bodyH=Math.max(1.4,Math.abs(yc-yo));ctx.fillRect(x-candleW/2,bodyTop,candleW,bodyH);});
+    const labelWeeks=[];for(let wk=1;wk<=uptoWeek;wk++){if(wk===1||wk%5===0||wk===uptoWeek)labelWeeks.push(wk)}
+    ctx.fillStyle='#64748b';ctx.font='9px sans-serif';ctx.textAlign='center';ctx.textBaseline='top';for(const wk of [...new Set(labelWeeks)])ctx.fillText(String(wk),xForSeq(wk*5-2),cssH-bottom+6);
+    function drawMA(period,color){ctx.strokeStyle=color;ctx.lineWidth=1.6;ctx.beginPath();let started=false;for(let wk=period;wk<=uptoWeek;wk++){const val=movingAverageForWeek(wk,period);if(val==null)continue;const x=xForSeq(wk*5),yy=y(val);if(!started){ctx.moveTo(x,yy);started=true}else ctx.lineTo(x,yy)}if(started)ctx.stroke();}
     drawMA(5,'#facc15');drawMA(10,'#60a5fa');
   }
 
   function animateLatestCandle(canvas,week){
-    return new Promise(resolve=>{const start=performance.now(),dur=460;function frame(now){const p=clamp((now-start)/dur,0,1);renderMarketChart(canvas,week,{lastProgress:1-Math.pow(1-p,3)});if(p<1)requestAnimationFrame(frame);else resolve();}requestAnimationFrame(frame);});
+    return new Promise(resolve=>{const start=performance.now(),dur=620;function frame(now){const p=clamp((now-start)/dur,0,1);renderMarketChart(canvas,week,{weekProgress:1-Math.pow(1-p,3)});if(p<1)requestAnimationFrame(frame);else resolve();}requestAnimationFrame(frame);});
+  }
+
+  function getTransitionVoiceGroups(){
+    const rng=mulberry32(hashSeed(`${state.seed}-transition-groups-${state.week}`)); const dir=marketDirectionKey();
+    const news={source:'財經新聞',text:getWeeklyNews(),kind:'news'}, social={source:'社群聲音',text:getWeeklySocial(),kind:'social'};
+    const socialBias=(state.scenarioId==='mad_bull'||dir==='strong_up')?.72:(dir==='up'?.60:(state.drawdown<=-20?.30:.48));
+    const marketBoth=rng()<(isExtremePressureState()?.18:.10); const market=marketBoth?[news,social]:(rng()<socialBias?[social]:[news]);
+    const os=pickSelfOS(),family=pickFamilyVoice(); let personal=[];
+    if(os&&family&&rng()<(isExtremePressureState()?.48:.16))personal=[os,family];else if(os&&family)personal=[rng()<.62?os:family];else if(os)personal=[os];else if(family)personal=[family];
+    return {market,personal};
+  }
+
+  function revealGroupHTML(voices){
+    if(!voices?.length)return ''; return voices.map((v,i)=>i===0?v.text:`<div class="reveal-secondary"><span class="reveal-secondary-label">${v.source}</span>${v.text}</div>`).join('');
   }
 
   function captureWeekSnapshot(){
     ensureV07State(); if(state.weekSnapshots.some(x=>x.week===state.week))return;
-    const pressure=getWeeklyPressureVoice(), bar=state.marketOHLC?.[state.week];
-    state.weekSnapshots.push({week:state.week,return:state.weekReturn,drawdown:state.drawdown,stage:getArc(state.week)?.[2]||'',news:getWeeklyNews(),pressureSource:pressure.source,pressureText:pressure.text,pressureKind:pressure.kind||'',pressureExtreme:!!pressure.extreme,ohlc:bar?{...bar}:null,decision:null});
+    const pressure=getWeeklyPressureVoice(), bar=state.marketOHLC?.[state.week],groups=getTransitionVoiceGroups();
+    state.weekSnapshots.push({week:state.week,return:state.weekReturn,drawdown:state.drawdown,stage:getArc(state.week)?.[2]||'',news:getWeeklyNews(),pressureSource:pressure.source,pressureText:pressure.text,pressureKind:pressure.kind||'',pressureExtreme:!!pressure.extreme,marketVoices:groups.market,personalVoices:groups.personal,unrealizedPL:unrealizedPL(),ohlc:bar?{...bar}:null,decision:null});
   }
 
   function updateSnapshotDecision(text){
@@ -884,8 +931,9 @@
     ensureV07State(); $('topWeekLabel').textContent=`第 ${state.week} / 26 週`;
     const total=totalAssets(), sw=stockWeight(), inv=investmentAssets(), bw=inv>0?state.bondValue/inv:0;
     renderMarketChart($('marketCanvas'),state.week);
-    const bar=state.marketOHLC?.[state.week]; if(bar)$('marketOHLCMeta').innerHTML=`O <strong>${bar.open.toFixed(1)}</strong>｜H <strong>${bar.high.toFixed(1)}</strong>｜L <strong>${bar.low.toFixed(1)}</strong>｜C <strong>${bar.close.toFixed(1)}</strong>`;
-    const ma5=movingAverageForWeek(state.week,5),ma10=movingAverageForWeek(state.week,10);$('marketMAMeta').innerHTML=`5W ${ma5?`<strong>${ma5.toFixed(1)}</strong>`:'—'}｜10W ${ma10?`<strong>${ma10.toFixed(1)}</strong>`:'—'}`;
+    const indexNow=MARKET_INDEX_BASE*(state.marketLevel/100),indexPct=state.marketLevel-100;$('marketIndexNow').innerHTML=`${fmt.format(Math.round(indexNow))} <span class="${indexPct<0?'negative':indexPct>0?'positive':''}">（${pct(indexPct)}）</span>`;
+    const weekBars=(state.marketDailyOHLC||[]).filter(b=>b.week===state.week);if(weekBars.length){const o=weekBars[0].open,h=Math.max(...weekBars.map(b=>b.high)),l=Math.min(...weekBars.map(b=>b.low)),c=weekBars[weekBars.length-1].close;$('marketOHLCMeta').innerHTML=`O <strong>${fmt.format(Math.round(o))}</strong>｜H <strong>${fmt.format(Math.round(h))}</strong>｜L <strong>${fmt.format(Math.round(l))}</strong>｜C <strong>${fmt.format(Math.round(c))}</strong>`;}
+    const ma5=movingAverageForWeek(state.week,5),ma10=movingAverageForWeek(state.week,10);$('marketMAMeta').innerHTML=`5W ${ma5?`<strong>${fmt.format(Math.round(ma5))}</strong>`:'—'}｜10W ${ma10?`<strong>${fmt.format(Math.round(ma10))}</strong>`:'—'}`;
     $('totalAssetCompact').textContent=compactMoney(total); $('totalAssetCompact').title=money(total);
     const bondDD=state.bondAthLevel>0?(state.bondLevel/state.bondAthLevel-1)*100:0;
     const rows=[
@@ -938,7 +986,7 @@
     if(e.kind==='income'){state.investCash+=e.amount;state.logs.push({week:state.week,type:'life',major:true,text:`人生事件：${e.title}，額外收入 ${money(e.amount)}。`});}
     else {
       let remain=e.amount; const parts=[];
-      function take(key,label){const amt=Math.min(remain,state[key]);if(amt>0){state[key]-=amt;remain-=amt;parts.push(`${label} ${money(amt)}`);if(key==='stockValue'||key==='bondValue')state.forcedSaleCount++;}}
+      function take(key,label){const amt=Math.min(remain,state[key]);if(amt>0){if(key==='stockValue'||key==='bondValue'){reducePositionByValue(key,amt);state.forcedSaleCount++}else state[key]-=amt;remain-=amt;parts.push(`${label} ${money(amt)}`);}}
       const order = source==='cash'?['investCash','reserve','bondValue','stockValue']:source==='reserve'?['reserve','investCash','bondValue','stockValue']:source==='bond'?['bondValue','investCash','reserve','stockValue']:['stockValue','investCash','reserve','bondValue'];
       const reserveBefore=state.reserve;const labels={investCash:'可投資現金',reserve:'預備金',bondValue:'賣債券',stockValue:'賣股票'}; for(const k of order)take(k,labels[k]);if(state.reserve<reserveBefore)requestCashflowReview('人生事件動用了預備金，請重新確認每月現金流規則。');
       if(remain>0){alert('你的全部流動資產仍不足以支付這筆支出，本局將直接結算為流動性失敗。');state.logs.push({week:state.week,type:'liquidity',major:true,text:`人生事件 ${e.title} 造成流動性不足。`});state.finished=true;state.finishReason='liquidity';state.pendingLife=null;save();renderReport();return}
@@ -957,18 +1005,21 @@
     const cardIntent=state?.pendingActionCard?.intent; if(cardIntent){$('tradeAction').value=cardIntent==='increase'?'buy':'sell';$('tradeAction').disabled=true;}else $('tradeAction').disabled=false;
     const action=$('tradeAction').value; $('tradeAsset').disabled=['reserveToCash','cashToReserve'].includes(action);
     let hint='';if(action==='buy')hint=`可用投資現金：${money(state.investCash)}`;if(action==='sell')hint=`目前股票 ${money(state.stockValue)}｜債券 ${money(state.bondValue)}`;if(action==='reserveToCash')hint=`最多可動用 ${money(state.reserve)}`;if(action==='cashToReserve')hint=`最多可補回 ${money(state.investCash)}`;$('tradeHint').textContent=hint;
+    const preview=$('tradePreview'),asset=$('tradeAsset').value,amount=Math.max(0,+$('tradeAmount').value||0),before=stockWeight();
+    if(['buy','sell'].includes(action)&&amount>0){let stock=state.stockValue,bond=state.bondValue,cash=state.investCash;if(action==='buy'&&amount<=cash){cash-=amount;if(asset==='stock')stock+=amount;else bond+=amount}else if(action==='sell'&&amount<=state[asset==='stock'?'stockValue':'bondValue']){if(asset==='stock')stock-=amount;else bond-=amount;cash+=amount}else{preview.classList.add('hidden');preview.innerHTML='';}
+      const denom=stock+bond+cash,after=denom>0?stock/denom:0;if((action==='buy'&&amount<=state.investCash)||(action==='sell'&&amount<=state[asset==='stock'?'stockValue':'bondValue'])){preview.classList.remove('hidden');const arrow=after>before?'↑':after<before?'↓':'→';preview.innerHTML=`交易後股票水位：<strong>${(before*100).toFixed(1)}% → ${(after*100).toFixed(1)}% ${arrow}</strong>`;}}else{preview.classList.add('hidden');preview.innerHTML='';}
     const blocked=!!state.pendingMonthly||!!state.pendingLife||!!state.pendingIncome||!!state.pendingCashflowReview; $('commitTurnBtn').disabled=blocked; $('quickNextBtn').disabled=blocked; $('tradeToggleBtn').disabled=blocked; $('decisionDock').style.opacity=blocked?.5:1;
   }
 
   async function runBootSequence(){
-    if(turnTransitioning)return;turnTransitioning=true;const o=$('bootTransition'),line=$('bootLine');o.classList.remove('hidden');line.textContent='連接 135 個虛擬世界市場卡牌…';await wait(300);line.textContent='抽取一張模擬市場走勢';await wait(300);line.textContent='載入完成，開始模擬。';await wait(480);o.classList.add('hidden');turnTransitioning=false;prepareTurn();
+    if(turnTransitioning)return;turnTransitioning=true;const o=$('bootTransition'),line=$('bootLine');o.classList.remove('hidden');line.textContent='連接 135 個虛擬世界市場卡牌…';await wait(1000);line.textContent='抽取一張模擬市場走勢';await wait(1000);line.textContent='載入完成，開始模擬。';await wait(1000);o.classList.add('hidden');turnTransitioning=false;prepareTurn();
   }
 
   function wait(ms){return new Promise(resolve=>setTimeout(resolve,ms));}
 
   function resetTransitionReveal(){
-    $('transitionNewsCard').classList.remove('show'); $('transitionPressureCard').classList.remove('show','extreme'); $('turnTransition').querySelector('.turn-transition-panel')?.classList.remove('deep-stress');
-    $('transitionActions').classList.add('hidden'); $('transitionNewsText').textContent=''; $('transitionPressureText').textContent='';
+    $('transitionNewsCard').classList.remove('show','hidden'); $('transitionPressureCard').classList.remove('show','extreme','hidden'); $('turnTransition').querySelector('.turn-transition-panel')?.classList.remove('deep-stress');
+    $('transitionUnrealized').classList.add('hidden');$('transitionActions').classList.add('hidden'); $('transitionNewsText').innerHTML=''; $('transitionPressureText').innerHTML='';
     if(state)renderMarketChart($('transitionMarketCanvas'),Math.max(1,state.week));
   }
 
@@ -989,14 +1040,14 @@
     kicker.textContent=`第 ${state.week} / 26 週`;
     if(Math.abs(r)>=4){title.textContent=`市場${r<0?'急跌':'急彈'} ${pct(r)}`;title.className=`turn-transition-title ${r<0?'negative':'positive'}`;}
     else{title.textContent=`本週市場 ${pct(r)}`;title.className=`turn-transition-title ${r<0?'negative':r>0?'positive':''}`;}
-    const absImpact=money(Math.abs(impact));
-    detail.textContent=impact<0?`你的投資組合本週損失 ${absImpact}`:impact>0?`你的投資組合本週增加 ${absImpact}`:'你的投資組合本週變動有限';
-    const snap=[...state.weekSnapshots].reverse().find(x=>x.week===state.week);
+    const absImpact=money(Math.abs(impact));detail.className='turn-transition-detail';
+    if(impact<0){detail.textContent=`📉 本週損失 ${absImpact}`;detail.classList.add('negative')}else if(impact>0){detail.textContent=`📈 本週增加 ${absImpact}`;detail.classList.add('positive')}else detail.textContent='本週投資組合變動有限';
+    const snap=[...state.weekSnapshots].reverse().find(x=>x.week===state.week),upl=snap?.unrealizedPL??unrealizedPL(),uv=$('transitionUnrealizedValue');$('transitionUnrealized').classList.remove('hidden');uv.className=upl<0?'negative':upl>0?'positive':'';uv.textContent=`${upl>0?'+':''}${money(upl)}`;
+    const groups=(snap?.marketVoices||snap?.personalVoices)?{market:snap.marketVoices||[],personal:snap.personalVoices||[]}:getTransitionVoiceGroups();
     await wait(500);
-    $('transitionNewsText').textContent=snap?.news||getWeeklyNews(); $('transitionNewsCard').classList.add('show');
+    if(groups.market.length){$('transitionMarketSource').textContent=groups.market.length>1?groups.market.map(v=>v.source).join('＋'):groups.market[0].source;$('transitionNewsText').innerHTML=revealGroupHTML(groups.market);$('transitionNewsCard').classList.add('show')}else $('transitionNewsCard').classList.add('hidden');
     await wait(500);
-    const pressure=snap?{source:snap.pressureSource,text:snap.pressureText,kind:snap.pressureKind,extreme:snap.pressureExtreme}:getWeeklyPressureVoice();
-    $('transitionPressureSource').textContent=pressure.source; $('transitionPressureText').textContent=pressure.text; $('transitionPressureCard').classList.add('show');if((pressure.extreme||isExtremePressureState())&&pressure.kind!=='social'){$('transitionPressureCard').classList.add('extreme');$('turnTransition').querySelector('.turn-transition-panel')?.classList.add('deep-stress');}
+    if(groups.personal.length){const extreme=groups.personal.some(v=>v.extreme),kinds=groups.personal.map(v=>v.kind);$('transitionPressureSource').textContent=groups.personal.length>1?groups.personal.map(v=>v.source).join('＋'):groups.personal[0].source;$('transitionPressureText').innerHTML=revealGroupHTML(groups.personal);$('transitionPressureCard').classList.add('show');if((extreme||isExtremePressureState())&&!kinds.includes('social')){$('transitionPressureCard').classList.add('extreme');$('turnTransition').querySelector('.turn-transition-panel')?.classList.add('deep-stress')}}else $('transitionPressureCard').classList.add('hidden');
     await wait(120);
     $('transitionContinueBtn').textContent='查看本週完整狀況'; $('transitionContinueBtn').onclick=closeTransitionToGame; $('transitionActions').classList.remove('hidden');
   }
@@ -1022,10 +1073,10 @@
     if(amount<0){alert('金額不能為負數。');return} let text='本週維持目前配置。', major=false;
     if(action==='buy'){
       if(amount<=0||amount>state.investCash){alert('買進金額必須大於 0，且不能超過投資現金。');return}
-      state.investCash-=amount;if(asset==='stock')state.stockValue+=amount;else state.bondValue+=amount;state.totalBought+=amount;state.buyCount++;text=`買進${asset==='stock'?'股票':'債券'} ${money(amount)}。`;major=amount>=Math.max(investmentAssets(),1)*0.05;
+      state.investCash-=amount;if(asset==='stock'){state.stockValue+=amount;state.stockCostBasis=(state.stockCostBasis||0)+amount}else{state.bondValue+=amount;state.bondCostBasis=(state.bondCostBasis||0)+amount}state.totalBought+=amount;state.buyCount++;text=`買進${asset==='stock'?'股票':'債券'} ${money(amount)}。`;major=amount>=Math.max(investmentAssets(),1)*0.05;
     } else if(action==='sell'){
       const key=asset==='stock'?'stockValue':'bondValue';if(amount<=0||amount>state[key]){alert('賣出金額必須大於 0，且不能超過目前資產市值。');return}
-      state[key]-=amount;state.investCash+=amount;state.totalSold+=amount;state.sellCount++;text=`賣出${asset==='stock'?'股票':'債券'} ${money(amount)}。`;major=amount>=Math.max(investmentAssets(),1)*0.05;
+      reducePositionByValue(key,amount);state.investCash+=amount;state.totalSold+=amount;state.sellCount++;text=`賣出${asset==='stock'?'股票':'債券'} ${money(amount)}。`;major=amount>=Math.max(investmentAssets(),1)*0.05;
     } else if(action==='reserveToCash'){
       if(amount<=0||amount>state.reserve){alert('動用金額必須大於 0，且不能超過預備金。');return}
       state.reserve-=amount;state.investCash+=amount;state.reserveUsedForInvesting+=amount;state.reserveTransferCount++;text=`將預備金 ${money(amount)} 轉入投資現金。`;major=true;requestCashflowReview('你剛動用緊急預備金，請重新確認每月現金流規則。');
@@ -1134,7 +1185,7 @@
   function buildDownloadReportHTML(){
     const s=getScenario(),c=evaluateConsistency(),pl=equivalentInvestmentPL(),plPct=(state.portfolioIndex||100)-100,highlights=getReportHighlights(c),title=generatePlayerTitle();
     const timeline=state.logs.filter(x=>x.major||x.type==='decision').map(x=>`<li><strong>Week ${x.week}</strong>｜${x.text}</li>`).join('');
-    return `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>投資壓力測試報告｜Seed ${state.seed}</title><style>body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;max-width:820px;margin:0 auto;padding:28px;color:#172033;line-height:1.6}h1{margin-bottom:4px}.meta{color:#64748b}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.m{border:1px solid #d9e0ea;border-radius:10px;padding:12px}.k{font-size:12px;color:#64748b}.v{font-size:22px;font-weight:800}.section{margin-top:24px}li{margin:7px 0}@media(max-width:520px){.grid{grid-template-columns:1fr}}</style></head><body><h1>投資壓力測試報告</h1><div class="meta">MVP 0.7｜一般模式 26 週｜Seed ${state.seed}</div><h2>${s.name}</h2><p>${s.summary}</p><div class="section"><div class="k">本局稱號</div><div class="v">${title.title}</div><p>${title.tags.join("・")}</p></div><div class="grid"><div class="m"><div class="k">市場最大跌幅</div><div class="v">${pct(marketMaxDrawdown())}</div></div><div class="m"><div class="k">投資最大回撤</div><div class="v">${pct(state.maxPlayerDrawdown)}</div></div><div class="m"><div class="k">投資淨表現</div><div class="v">${pct(plPct)}</div></div><div class="m"><div class="k">等值投資損益</div><div class="v">${money(pl)}</div></div><div class="m"><div class="k">最低投資現金</div><div class="v">${money(state.minInvestCash)}</div></div><div class="m"><div class="k">策略一致性</div><div class="v">${c.assessable?c.score+'/100':'資料不足'}</div></div></div><div class="section"><h2>本局重點</h2><ul>${highlights.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="section"><h2>重大決策與事件</h2><ul>${timeline||'<li>無重大主動交易紀錄。</li>'}</ul></div><div class="section"><h2>客觀紀錄</h2><p>初始總資產：${money(state.initial.total)}<br>最終總資產：${money(totalAssets())}<br>期間新增本業現金：${money(state.totalCashflowAdded)}<br>總買進：${money(state.totalBought)}（${state.buyCount} 次）<br>總賣出：${money(state.totalSold)}（${state.sellCount} 次）<br>最低預備金：${money(state.minReserve)}<br>收入衝擊：${state.incomeShockCount?'有':'無'}</p></div><p class="meta">此報告為互動模擬與教育用途，不構成個人化投資建議。</p></body></html>`;
+    return `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>投資壓力測試報告｜Seed ${state.seed}</title><style>body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;max-width:820px;margin:0 auto;padding:28px;color:#172033;line-height:1.6}h1{margin-bottom:4px}.meta{color:#64748b}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.m{border:1px solid #d9e0ea;border-radius:10px;padding:12px}.k{font-size:12px;color:#64748b}.v{font-size:22px;font-weight:800}.section{margin-top:24px}li{margin:7px 0}@media(max-width:520px){.grid{grid-template-columns:1fr}}</style></head><body><h1>投資壓力測試報告</h1><div class="meta">MVP 0.7.1｜一般模式 26 週｜Seed ${state.seed}</div><h2>${s.name}</h2><p>${s.summary}</p><div class="section"><div class="k">本局稱號</div><div class="v">${title.title}</div><p>${title.tags.join("・")}</p></div><div class="grid"><div class="m"><div class="k">市場最大跌幅</div><div class="v">${pct(marketMaxDrawdown())}</div></div><div class="m"><div class="k">投資最大回撤</div><div class="v">${pct(state.maxPlayerDrawdown)}</div></div><div class="m"><div class="k">投資淨表現</div><div class="v">${pct(plPct)}</div></div><div class="m"><div class="k">等值投資損益</div><div class="v">${money(pl)}</div></div><div class="m"><div class="k">最低投資現金</div><div class="v">${money(state.minInvestCash)}</div></div><div class="m"><div class="k">策略一致性</div><div class="v">${c.assessable?c.score+'/100':'資料不足'}</div></div></div><div class="section"><h2>本局重點</h2><ul>${highlights.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="section"><h2>重大決策與事件</h2><ul>${timeline||'<li>無重大主動交易紀錄。</li>'}</ul></div><div class="section"><h2>客觀紀錄</h2><p>初始總資產：${money(state.initial.total)}<br>最終總資產：${money(totalAssets())}<br>期間新增本業現金：${money(state.totalCashflowAdded)}<br>總買進：${money(state.totalBought)}（${state.buyCount} 次）<br>總賣出：${money(state.totalSold)}（${state.sellCount} 次）<br>最低預備金：${money(state.minReserve)}<br>收入衝擊：${state.incomeShockCount?'有':'無'}</p></div><p class="meta">此報告為互動模擬與教育用途，不構成個人化投資建議。</p></body></html>`;
   }
   function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight,maxLines=3){
     const chars=[...String(text)]; let line='', lines=[];
@@ -1144,7 +1195,7 @@
   function buildShareCanvas(){
     const c=document.createElement('canvas'); c.width=1080;c.height=1350;const ctx=c.getContext('2d');const s=getScenario(),cons=evaluateConsistency(),pl=equivalentInvestmentPL(),plPct=(state.portfolioIndex||100)-100,title=generatePlayerTitle();
     ctx.fillStyle='#0b0f14';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#121923';ctx.strokeStyle='#334155';ctx.lineWidth=3;roundRect(ctx,54,60,972,1230,34,true,true);
-    ctx.fillStyle='#94a3b8';ctx.font='700 30px sans-serif';ctx.fillText('投資壓力模擬器｜MVP 0.7',90,115);
+    ctx.fillStyle='#94a3b8';ctx.font='700 30px sans-serif';ctx.fillText('投資壓力模擬器｜MVP 0.7.1',90,115);
     ctx.fillStyle='#eef3f8';ctx.font='900 54px sans-serif';ctx.fillText('我的投資壓力測試結果',90,190);
     ctx.fillStyle='#fcd34d';ctx.font='800 25px sans-serif';ctx.fillText('本局稱號',90,250);ctx.fillStyle='#ffffff';ctx.font='900 62px sans-serif';ctx.fillText(title.title,90,320);
     ctx.fillStyle='#fde68a';ctx.font='700 24px sans-serif';ctx.fillText(title.tags.join(' ・ '),90,365);
@@ -1157,20 +1208,20 @@
   function dataUrlToBlob(dataUrl){const [head,data]=dataUrl.split(',');const mime=(head.match(/data:([^;]+)/)||[])[1]||'image/png';const bytes=atob(data);const arr=new Uint8Array(bytes.length);for(let i=0;i<bytes.length;i++)arr[i]=bytes.charCodeAt(i);return new Blob([arr],{type:mime});}
   async function shareSummaryImage(){
     const status=$('shareStatus');status.textContent='正在產生分享圖片…';
-    try{const canvas=buildShareCanvas(),dataUrl=canvas.toDataURL('image/png',0.96),blob=dataUrlToBlob(dataUrl),file=new File([blob],`投資壓力測試_MVP0.7_Seed${state.seed}.png`,{type:'image/png'});
+    try{const canvas=buildShareCanvas(),dataUrl=canvas.toDataURL('image/png',0.96),blob=dataUrlToBlob(dataUrl),file=new File([blob],`投資壓力測試_MVP0.7.1_Seed${state.seed}.png`,{type:'image/png'});
       if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'我的投資壓力測試結果'});status.textContent='已開啟分享選單，可選「儲存影像」或分享給其他 App。';}
       else{const a=document.createElement('a');a.href=dataUrl;a.download=file.name;document.body.appendChild(a);a.click();a.remove();status.textContent='此瀏覽器不支援直接分享，已改為下載 PNG 圖片。';}
     }catch(err){if(err?.name==='AbortError'){status.textContent='已取消分享。';return}status.textContent='分享圖片產生失敗，請改用完整報告 HTML。';console.error(err)}
   }
 
-  function downloadReport(){const blob=new Blob([buildDownloadReportHTML()],{type:'text/html;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`投資壓力測試報告_MVP0.7_Seed${state.seed}.html`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200);}
+  function downloadReport(){const blob=new Blob([buildDownloadReportHTML()],{type:'text/html;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`投資壓力測試報告_MVP0.7.1_Seed${state.seed}.html`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200);}
 
   function updateContractButton(){if($('startGameBtn'))$('startGameBtn').disabled=!['contractRuns','contractNoGrind','contractReal'].every(id=>$(id).checked)}
   function updateCashflowSetupUI(){const r=$('cashflowRule').value;$('cashflowSplitBox').classList.toggle('hidden',r!=='split');$('cashflowTargetBox').classList.toggle('hidden',r!=='reserveTarget');}
   $('newGameBtn').onclick=()=>{showView('setup');updateCashflowSetupUI();updateContractButton();}; $('backLandingBtn').onclick=()=>showView('landing'); $('startGameBtn').onclick=createGame; $('resetBtn').onclick=()=>{if(confirm('確定要清除本機遊戲資料？'))clearSave()};
   $('cashflowRule').onchange=updateCashflowSetupUI;['contractRuns','contractNoGrind','contractReal'].forEach(id=>$(id).onchange=updateContractButton);$('reserve').oninput=()=>{if($('cashflowRule').value==='reserveTarget')$('cashflowReserveTarget').value=$('reserve').value;};
   $('resumeBtn').onclick=()=>{state=load(); if(!state)return; ensureV07State(); if(state.finished)renderReport();else{showView('game');renderGame();}};
-  $('tradeAction').onchange=updateTradeUI; $('tradeAsset').onchange=updateTradeUI; $('commitTurnBtn').onclick=()=>commitTurn(false);
+  $('tradeAction').onchange=updateTradeUI; $('tradeAsset').onchange=updateTradeUI; $('tradeAmount').oninput=updateTradeUI; $('commitTurnBtn').onclick=()=>commitTurn(false);
   $('quickNextBtn').onclick=()=>commitTurn(true);
   window.addEventListener('resize',()=>{if(state&&!$('game').classList.contains('hidden'))renderMarketChart($('marketCanvas'),state.week);});
   $('tradeToggleBtn').onclick=()=>{if(state.pendingActionCard){alert('這週請先使用行動卡選擇方向。');return}$('tradeCard').classList.toggle('hidden'); if(!$('tradeCard').classList.contains('hidden')){$('tradeAction').value='buy';$('tradeAmount').value='';updateTradeUI();$('tradeCard').scrollIntoView({behavior:'smooth',block:'start'});}};
