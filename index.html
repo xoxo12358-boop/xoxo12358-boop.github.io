@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>投資壓力模擬器｜MVP 0.5</title>
+  <title>投資壓力模擬器｜MVP 0.5.1</title>
   <style>
     :root {
       --bg:#0b0f14; --panel:#121923; --panel2:#182231; --text:#eef3f8; --muted:#94a3b8;
@@ -53,7 +53,7 @@
     @media(max-width:440px){.mode-grid{grid-template-columns:1fr}.asset-rows{grid-template-columns:1fr 1fr}.asset-mini .v{font-size:17px}.cash-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.cash-strip .cash-item:last-child{grid-column:1/-1}.pressure-row{grid-template-columns:repeat(3,minmax(0,1fr))}.pressure-mini{padding:7px 6px}.pressure-mini .v{font-size:12px}.report-summary-card{padding:12px}.report-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 
-    /* MVP 0.5 */
+    /* MVP 0.5.1 */
     .mode-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
     .news-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:4px}.news-head h2{margin:0}.stage-badge{display:inline-block;max-width:52%;padding:4px 8px;border:1px solid #3a4b64;border-radius:999px;font-size:11px;font-weight:850;color:#dbeafe;background:#0e1724;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .portfolio-card{padding-top:12px}.asset-head{display:flex;justify-content:space-between;gap:8px;align-items:center}.asset-head .k{font-size:13px;font-weight:850;color:#cbd5e1}.asset-head .weight{font-size:11px;font-weight:800;color:#94a3b8;white-space:nowrap}.asset-mini .perf{font-size:14px;font-weight:850;margin-top:8px}.asset-mini .perf span{line-height:1.25}.asset-mini .v{margin-top:5px}
@@ -66,12 +66,20 @@
     .report-actions{grid-template-columns:1.2fr 1fr 1fr}.share-status{font-size:11px;color:#94a3b8;margin-top:6px;min-height:1.4em}
     @media(max-width:440px){.mode-grid{grid-template-columns:1fr}.cash-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.cash-strip .cash-item:last-child{grid-column:auto}.pressure-row{grid-template-columns:1.25fr .9fr .9fr}.pressure-mini.primary-loss .v{font-size:16px}.asset-mini .perf{font-size:13px}.decision-dock{grid-template-columns:1fr 1fr}.decision-dock button{font-size:13px;min-height:46px}.report-actions{grid-template-columns:1fr 1fr}.report-actions button:first-child{grid-column:1/-1}.stage-badge{max-width:48%;font-size:10px}.title-card .main-title{font-size:21px}}
 
+
+    /* MVP 0.5.1 turn feedback */
+    .brand-line{display:flex;align-items:baseline;gap:7px;min-width:0}.top-week{font-size:12px;font-weight:850;color:#cbd5e1;white-space:nowrap}
+    .turn-transition{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(4,9,15,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:1;transition:opacity .16s ease}
+    .turn-transition.hidden{display:none!important}.turn-transition-panel{width:min(430px,92vw);padding:26px 24px;border:1px solid #334155;border-radius:20px;background:#101823;box-shadow:0 20px 70px rgba(0,0,0,.45);text-align:center;animation:turnPulse .28s ease-out}
+    .turn-transition-kicker{font-size:12px;font-weight:800;color:#94a3b8;letter-spacing:.04em}.turn-transition-title{font-size:27px;line-height:1.2;font-weight:950;margin-top:8px;color:#eef3f8}.turn-transition-title.negative{color:#4ade80}.turn-transition-title.positive{color:#f87171}.turn-transition-detail{font-size:14px;color:#cbd5e1;margin-top:9px}
+    @keyframes turnPulse{from{transform:scale(.97);opacity:.25}to{transform:scale(1);opacity:1}}
+    @media(max-width:440px){.brand-line{gap:5px}.top-week{font-size:11px}.turn-transition-panel{padding:24px 18px}.turn-transition-title{font-size:25px}}
   </style>
 </head>
 <body>
 <div class="wrap">
   <div class="topbar">
-    <div><div class="brand">投資壓力模擬器</div><div class="small muted">MVP 0.5｜半年高壓版</div></div>
+    <div><div class="brand-line"><div class="brand">投資壓力模擬器</div><span class="top-week hidden" id="topWeekLabel">第 1 / 26 週</span></div><div class="small muted">MVP 0.5.1｜半年高壓版</div></div>
     <div class="inline"><span class="badge" id="saveBadge">未開始</span><button class="secondary hidden" id="resetBtn">清除本機資料</button></div>
   </div>
 
@@ -118,12 +126,6 @@
   </section>
 
   <section id="game" class="hidden">
-    <div class="card game-summary">
-      <div class="market-head">
-        <div><div class="week" id="weekLabel">第 1 週</div><div class="mode-chip">一般模式｜26 週（約半年）</div></div>
-      </div>
-    </div>
-
     <div class="card news-compact">
       <div class="news-head"><h2>本週市場敘事</h2><span class="stage-badge" id="arcTag">市場階段</span></div>
       <div id="news"></div>
@@ -200,11 +202,19 @@
     <div class="actions"><button class="secondary" id="clearAfterBtn">清除本機資料</button></div>
   </section>
 
-  <div class="footer-note">MVP 0.5｜僅為互動模擬與教育用途，不構成任何個人化投資建議。</div>
+  <div class="turn-transition hidden" id="turnTransition" aria-live="polite" aria-atomic="true">
+    <div class="turn-transition-panel">
+      <div class="turn-transition-kicker" id="transitionKicker">本週結束</div>
+      <div class="turn-transition-title" id="transitionTitle">市場推進中…</div>
+      <div class="turn-transition-detail" id="transitionDetail">下一週的結果即將揭曉</div>
+    </div>
+  </div>
+
+  <div class="footer-note">MVP 0.5.1｜僅為互動模擬與教育用途，不構成任何個人化投資建議。</div>
 </div>
 <script>
 (() => {
-  const STORAGE_KEY = 'investment_stress_mvp_v05';
+  const STORAGE_KEY = 'investment_stress_mvp_v051';
   const fmt = new Intl.NumberFormat('zh-TW', { maximumFractionDigits: 0 });
   const pct = (x, d=1) => `${x >= 0 ? '+' : ''}${x.toFixed(d)}%`;
   const money = x => `NT$ ${fmt.format(Math.round(x || 0))}`;
@@ -267,13 +277,14 @@
 
   let state = null;
   let currentTurnPrepared = false;
+  let turnTransitioning = false;
 
   const $ = id => document.getElementById(id);
   const views = ['landing','setup','game','report'];
-  function showView(id){views.forEach(v=>$(v).classList.toggle('hidden',v!==id));}
+  function showView(id){views.forEach(v=>$(v).classList.toggle('hidden',v!==id));const w=$('topWeekLabel');if(w)w.classList.toggle('hidden',id!=='game');}
   function save(){if(state){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));$('saveBadge').textContent='已儲存在本機';$('resetBtn').classList.remove('hidden');}}
   function load(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'null')}catch{return null}}
-  function clearSave(){localStorage.removeItem(STORAGE_KEY);state=null;currentTurnPrepared=false;$('saveBadge').textContent='未開始';$('resumeBtn').classList.add('hidden');$('resetBtn').classList.add('hidden');showView('landing');}
+  function clearSave(){localStorage.removeItem(STORAGE_KEY);state=null;currentTurnPrepared=false;turnTransitioning=false;$('saveBadge').textContent='未開始';$('resumeBtn').classList.add('hidden');$('resetBtn').classList.add('hidden');showView('landing');}
 
   function validateSetup(){
     const stock=+$('stock').value, bond=+$('bond').value, cash=+$('cash').value, reserve=+$('reserve').value, monthlyCash=+$('monthlyCash').value;
@@ -329,7 +340,7 @@
     const stock=+$('stock').value,bond=+$('bond').value,investCash=+$('cash').value,reserve=+$('reserve').value;
     const initialInvestment=stock+bond+investCash; const initialTotal=initialInvestment+reserve;
     state={
-      version:'0.5', mode:'normal', seed, scenarioId:scenario.id, week:0, endWeek:26, finished:false,
+      version:'0.5.1', mode:'normal', seed, scenarioId:scenario.id, week:0, endWeek:26, finished:false,
       baseMonthlyCashFlow:+$('monthlyCash').value,currentMonthlyCashFlow:+$('monthlyCash').value,monthlyCashFlow:+$('monthlyCash').value,
       stockValue:stock,bondValue:bond,investCash,reserve,
       initial:{stock,bond,cash:investCash,reserve,total:initialTotal,investment:initialInvestment},
@@ -535,7 +546,7 @@
   }
 
   function renderGame(){
-    $('weekLabel').textContent=`第 ${state.week} / 26 週｜約第 ${(state.week/4.345).toFixed(1)} 個月`;
+    $('topWeekLabel').textContent=`第 ${state.week} / 26 週`;
     const total=totalAssets(), sw=stockWeight(), inv=investmentAssets(), bw=inv>0?state.bondValue/inv:0;
     $('totalAssetCompact').textContent=compactMoney(total); $('totalAssetCompact').title=money(total);
     const bondDD=state.bondAthLevel>0?(state.bondLevel/state.bondAthLevel-1)*100:0;
@@ -607,7 +618,40 @@
     const blocked=!!state.pendingMonthly||!!state.pendingLife||!!state.pendingIncome; $('commitTurnBtn').disabled=blocked; $('quickNextBtn').disabled=blocked; $('tradeToggleBtn').disabled=blocked; $('decisionDock').style.opacity=blocked?.5:1;
   }
 
+  function wait(ms){return new Promise(resolve=>setTimeout(resolve,ms));}
+
+  async function advanceTurnWithTransition(){
+    if(turnTransitioning)return; turnTransitioning=true;
+    const overlay=$('turnTransition'), kicker=$('transitionKicker'), title=$('transitionTitle'), detail=$('transitionDetail');
+    overlay.classList.remove('hidden'); title.className='turn-transition-title';
+    kicker.textContent=`第 ${state.week} 週結束`; title.textContent='市場推進中…'; detail.textContent='下一週的結果即將揭曉';
+    await wait(280);
+    prepareTurn();
+    const r=state.weekReturn||0, impact=state.weekMarketImpact||0;
+    kicker.textContent=`第 ${state.week} / 26 週`;
+    if(Math.abs(r)>=4){
+      title.textContent=`市場${r<0?'急跌':'急彈'} ${pct(r)}`;
+      title.className=`turn-transition-title ${r<0?'negative':'positive'}`;
+    }else{
+      title.textContent=`本週市場 ${pct(r)}`;
+      title.className=`turn-transition-title ${r<0?'negative':r>0?'positive':''}`;
+    }
+    const absImpact=money(Math.abs(impact));
+    detail.textContent=impact<0?`你的投資組合本週損失 ${absImpact}`:impact>0?`你的投資組合本週增加 ${absImpact}`:'你的投資組合本週變動有限';
+    await wait(Math.abs(r)>=4?520:430);
+    overlay.classList.add('hidden'); turnTransitioning=false; window.scrollTo({top:0,behavior:'auto'});
+  }
+
+  async function finishWithTransition(){
+    if(turnTransitioning)return; turnTransitioning=true;
+    const overlay=$('turnTransition'), kicker=$('transitionKicker'), title=$('transitionTitle'), detail=$('transitionDetail');
+    overlay.classList.remove('hidden'); title.className='turn-transition-title';
+    kicker.textContent=`第 ${state.week} / 26 週`; title.textContent='本局完成'; detail.textContent='正在整理你的決策紀錄…';
+    await wait(520); overlay.classList.add('hidden'); turnTransitioning=false; finishGame(); window.scrollTo({top:0,behavior:'auto'});
+  }
+
   function commitTurn(forceHold=false){
+    if(turnTransitioning)return;
     if(state.pendingMonthly||state.pendingLife||state.pendingIncome){alert('請先完成本月資金配置或當週事件。');return}
     const action=forceHold?'hold':$('tradeAction').value, asset=$('tradeAsset').value, amount=forceHold?0:(+$('tradeAmount').value||0);
     if(amount<0){alert('金額不能為負數。');return} let text='本週維持目前配置。', major=false;
@@ -626,7 +670,7 @@
     }
     state.logs.push({week:state.week,type:'decision',major,text,action,asset,amount,drawdown:state.drawdown,portfolioDrawdown:state.portfolioDrawdown,marketLevel:state.marketLevel,stockWeight:stockWeight(),investCash:state.investCash,reserve:state.reserve,total:totalAssets()});
     updateDerived(); save(); currentTurnPrepared=false; $('tradeCard').classList.add('hidden'); $('tradeAmount').value='';
-    if(state.week>=state.endWeek) finishGame(); else prepareTurn();
+    if(state.week>=state.endWeek) finishWithTransition(); else advanceTurnWithTransition();
   }
 
   function finishGame(){state.finished=true;state.finishReason=state.finishReason||'scenario';save();renderReport();}
@@ -724,7 +768,7 @@
   function buildDownloadReportHTML(){
     const s=getScenario(),c=evaluateConsistency(),pl=equivalentInvestmentPL(),plPct=(state.portfolioIndex||100)-100,highlights=getReportHighlights(c),title=generatePlayerTitle();
     const timeline=state.logs.filter(x=>x.major||x.type==='decision').map(x=>`<li><strong>Week ${x.week}</strong>｜${x.text}</li>`).join('');
-    return `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>投資壓力測試報告｜Seed ${state.seed}</title><style>body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;max-width:820px;margin:0 auto;padding:28px;color:#172033;line-height:1.6}h1{margin-bottom:4px}.meta{color:#64748b}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.m{border:1px solid #d9e0ea;border-radius:10px;padding:12px}.k{font-size:12px;color:#64748b}.v{font-size:22px;font-weight:800}.section{margin-top:24px}li{margin:7px 0}@media(max-width:520px){.grid{grid-template-columns:1fr}}</style></head><body><h1>投資壓力測試報告</h1><div class="meta">MVP 0.5｜一般模式 26 週｜Seed ${state.seed}</div><h2>${s.name}</h2><p>${s.summary}</p><div class="section"><div class="k">本局稱號</div><div class="v">${title.title}</div><p>${title.tags.join("・")}</p></div><div class="grid"><div class="m"><div class="k">市場最大跌幅</div><div class="v">${pct(marketMaxDrawdown())}</div></div><div class="m"><div class="k">投資最大回撤</div><div class="v">${pct(state.maxPlayerDrawdown)}</div></div><div class="m"><div class="k">投資淨表現</div><div class="v">${pct(plPct)}</div></div><div class="m"><div class="k">等值投資損益</div><div class="v">${money(pl)}</div></div><div class="m"><div class="k">最低投資現金</div><div class="v">${money(state.minInvestCash)}</div></div><div class="m"><div class="k">策略一致性</div><div class="v">${c.assessable?c.score+'/100':'資料不足'}</div></div></div><div class="section"><h2>本局重點</h2><ul>${highlights.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="section"><h2>重大決策與事件</h2><ul>${timeline||'<li>無重大主動交易紀錄。</li>'}</ul></div><div class="section"><h2>客觀紀錄</h2><p>初始總資產：${money(state.initial.total)}<br>最終總資產：${money(totalAssets())}<br>期間新增本業現金：${money(state.totalCashflowAdded)}<br>總買進：${money(state.totalBought)}（${state.buyCount} 次）<br>總賣出：${money(state.totalSold)}（${state.sellCount} 次）<br>最低預備金：${money(state.minReserve)}<br>收入衝擊：${state.incomeShockCount?'有':'無'}</p></div><p class="meta">此報告為互動模擬與教育用途，不構成個人化投資建議。</p></body></html>`;
+    return `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>投資壓力測試報告｜Seed ${state.seed}</title><style>body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;max-width:820px;margin:0 auto;padding:28px;color:#172033;line-height:1.6}h1{margin-bottom:4px}.meta{color:#64748b}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.m{border:1px solid #d9e0ea;border-radius:10px;padding:12px}.k{font-size:12px;color:#64748b}.v{font-size:22px;font-weight:800}.section{margin-top:24px}li{margin:7px 0}@media(max-width:520px){.grid{grid-template-columns:1fr}}</style></head><body><h1>投資壓力測試報告</h1><div class="meta">MVP 0.5.1｜一般模式 26 週｜Seed ${state.seed}</div><h2>${s.name}</h2><p>${s.summary}</p><div class="section"><div class="k">本局稱號</div><div class="v">${title.title}</div><p>${title.tags.join("・")}</p></div><div class="grid"><div class="m"><div class="k">市場最大跌幅</div><div class="v">${pct(marketMaxDrawdown())}</div></div><div class="m"><div class="k">投資最大回撤</div><div class="v">${pct(state.maxPlayerDrawdown)}</div></div><div class="m"><div class="k">投資淨表現</div><div class="v">${pct(plPct)}</div></div><div class="m"><div class="k">等值投資損益</div><div class="v">${money(pl)}</div></div><div class="m"><div class="k">最低投資現金</div><div class="v">${money(state.minInvestCash)}</div></div><div class="m"><div class="k">策略一致性</div><div class="v">${c.assessable?c.score+'/100':'資料不足'}</div></div></div><div class="section"><h2>本局重點</h2><ul>${highlights.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="section"><h2>重大決策與事件</h2><ul>${timeline||'<li>無重大主動交易紀錄。</li>'}</ul></div><div class="section"><h2>客觀紀錄</h2><p>初始總資產：${money(state.initial.total)}<br>最終總資產：${money(totalAssets())}<br>期間新增本業現金：${money(state.totalCashflowAdded)}<br>總買進：${money(state.totalBought)}（${state.buyCount} 次）<br>總賣出：${money(state.totalSold)}（${state.sellCount} 次）<br>最低預備金：${money(state.minReserve)}<br>收入衝擊：${state.incomeShockCount?'有':'無'}</p></div><p class="meta">此報告為互動模擬與教育用途，不構成個人化投資建議。</p></body></html>`;
   }
   function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight,maxLines=3){
     const chars=[...String(text)]; let line='', lines=[];
@@ -734,7 +778,7 @@
   function buildShareCanvas(){
     const c=document.createElement('canvas'); c.width=1080;c.height=1350;const ctx=c.getContext('2d');const s=getScenario(),cons=evaluateConsistency(),pl=equivalentInvestmentPL(),plPct=(state.portfolioIndex||100)-100,title=generatePlayerTitle();
     ctx.fillStyle='#0b0f14';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#121923';ctx.strokeStyle='#334155';ctx.lineWidth=3;roundRect(ctx,54,60,972,1230,34,true,true);
-    ctx.fillStyle='#94a3b8';ctx.font='700 30px sans-serif';ctx.fillText('投資壓力模擬器｜MVP 0.5',90,115);
+    ctx.fillStyle='#94a3b8';ctx.font='700 30px sans-serif';ctx.fillText('投資壓力模擬器｜MVP 0.5.1',90,115);
     ctx.fillStyle='#eef3f8';ctx.font='900 54px sans-serif';ctx.fillText('我的投資壓力測試結果',90,190);
     ctx.fillStyle='#fcd34d';ctx.font='800 25px sans-serif';ctx.fillText('本局稱號',90,250);ctx.fillStyle='#ffffff';ctx.font='900 62px sans-serif';ctx.fillText(title.title,90,320);
     ctx.fillStyle='#fde68a';ctx.font='700 24px sans-serif';ctx.fillText(title.tags.join(' ・ '),90,365);
@@ -747,13 +791,13 @@
   function dataUrlToBlob(dataUrl){const [head,data]=dataUrl.split(',');const mime=(head.match(/data:([^;]+)/)||[])[1]||'image/png';const bytes=atob(data);const arr=new Uint8Array(bytes.length);for(let i=0;i<bytes.length;i++)arr[i]=bytes.charCodeAt(i);return new Blob([arr],{type:mime});}
   async function shareSummaryImage(){
     const status=$('shareStatus');status.textContent='正在產生分享圖片…';
-    try{const canvas=buildShareCanvas(),dataUrl=canvas.toDataURL('image/png',0.96),blob=dataUrlToBlob(dataUrl),file=new File([blob],`投資壓力測試_MVP0.5_Seed${state.seed}.png`,{type:'image/png'});
+    try{const canvas=buildShareCanvas(),dataUrl=canvas.toDataURL('image/png',0.96),blob=dataUrlToBlob(dataUrl),file=new File([blob],`投資壓力測試_MVP0.5.1_Seed${state.seed}.png`,{type:'image/png'});
       if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'我的投資壓力測試結果'});status.textContent='已開啟分享選單，可選「儲存影像」或分享給其他 App。';}
       else{const a=document.createElement('a');a.href=dataUrl;a.download=file.name;document.body.appendChild(a);a.click();a.remove();status.textContent='此瀏覽器不支援直接分享，已改為下載 PNG 圖片。';}
     }catch(err){if(err?.name==='AbortError'){status.textContent='已取消分享。';return}status.textContent='分享圖片產生失敗，請改用完整報告 HTML。';console.error(err)}
   }
 
-  function downloadReport(){const blob=new Blob([buildDownloadReportHTML()],{type:'text/html;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`投資壓力測試報告_MVP0.5_Seed${state.seed}.html`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200);}
+  function downloadReport(){const blob=new Blob([buildDownloadReportHTML()],{type:'text/html;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`投資壓力測試報告_MVP0.5.1_Seed${state.seed}.html`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200);}
 
   $('newGameBtn').onclick=()=>showView('setup'); $('backLandingBtn').onclick=()=>showView('landing'); $('startGameBtn').onclick=createGame; $('resetBtn').onclick=()=>{if(confirm('確定要清除本機遊戲資料？'))clearSave()};
   $('resumeBtn').onclick=()=>{state=load(); if(!state)return; if(state.finished)renderReport();else{showView('game');renderGame();}};
@@ -762,7 +806,7 @@
   $('tradeToggleBtn').onclick=()=>{$('tradeCard').classList.toggle('hidden'); if(!$('tradeCard').classList.contains('hidden')){$('tradeAction').value='buy';$('tradeAmount').value='';updateTradeUI();$('tradeCard').scrollIntoView({behavior:'smooth',block:'start'});}};
   $('tradeCloseBtn').onclick=()=>{$('tradeCard').classList.add('hidden');window.scrollTo({top:0,behavior:'smooth'});};
   $('monthlyToCash').oninput=updateMonthlyCheck; $('monthlyToReserve').oninput=updateMonthlyCheck; $('confirmMonthlyBtn').onclick=confirmMonthly;
-  $('shareImageBtn').onclick=shareSummaryImage; $('downloadReportBtn').onclick=downloadReport; $('replayBtn').onclick=()=>{localStorage.removeItem(STORAGE_KEY);state=null;currentTurnPrepared=false;showView('setup')}; $('clearAfterBtn').onclick=clearSave;
+  $('shareImageBtn').onclick=shareSummaryImage; $('downloadReportBtn').onclick=downloadReport; $('replayBtn').onclick=()=>{localStorage.removeItem(STORAGE_KEY);state=null;currentTurnPrepared=false;turnTransitioning=false;showView('setup')}; $('clearAfterBtn').onclick=clearSave;
 
   const saved=load(); if(saved){$('resumeBtn').classList.remove('hidden');$('resetBtn').classList.remove('hidden');$('saveBadge').textContent=saved.finished?'上局已完成':'有未完成模擬';}
 })();
