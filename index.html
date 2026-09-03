@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>投資壓力模擬器｜MVP 0.4</title>
+  <title>投資壓力模擬器｜MVP 0.5</title>
   <style>
     :root {
       --bg:#0b0f14; --panel:#121923; --panel2:#182231; --text:#eef3f8; --muted:#94a3b8;
@@ -40,7 +40,7 @@
     @media (max-width:720px){.wrap{padding:9px 10px}.topbar{margin-bottom:8px}.grid,.grid3,.grid4{grid-template-columns:1fr 1fr}.trade-box{grid-template-columns:1fr}.hero{padding:20px}.dd{font-size:36px}.stat .v{font-size:18px}.asset-rows{grid-template-columns:repeat(4,minmax(0,1fr))}.game-summary .market-head{flex-direction:row;align-items:center}.progress{display:none}}
     @media (max-width:440px){.grid,.grid3,.grid4{grid-template-columns:1fr}.topbar{align-items:center}.topbar .brand{font-size:14px}.topbar .small{font-size:10px}.topbar #resetBtn{display:none}.actions button{flex:1}.hero h1{font-size:36px}.asset-rows{grid-template-columns:repeat(2,minmax(0,1fr))}.pressure-row{grid-template-columns:repeat(3,minmax(0,1fr))}.game-summary{padding:11px 13px}.compact-dd{font-size:36px}.portfolio-card{padding:11px 13px}.portfolio-total{font-size:23px}.news-compact{padding:10px 13px}.decision-dock{grid-template-columns:1fr}.decision-dock button{min-height:44px}.decision-dock .secondary{min-height:38px}.footer-note{margin-top:10px}}
 
-    /* MVP 0.4 */
+    /* MVP 0.4 legacy styles */
     .positive{color:#f87171}.negative{color:#4ade80}
     .mode-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.mode-card{border:1px solid #334155;border-radius:12px;padding:11px;background:#0e1520}.mode-card.active{border-color:#93c5fd;background:#111d2b}.mode-card.disabled{opacity:.48}.mode-title{font-weight:850}.mode-meta{font-size:11px;color:var(--muted);margin-top:4px}
     .game-summary{padding:9px 13px}.game-summary .market-head{align-items:center}.game-summary .week{font-size:14px;font-weight:800;color:#dbeafe}.mode-chip{font-size:10px;color:#94a3b8;margin-top:2px}
@@ -51,12 +51,27 @@
     details.report-detail{background:rgba(18,25,35,.96);border:1px solid var(--line);border-radius:13px;margin-bottom:8px;overflow:hidden}details.report-detail summary{padding:12px 14px;font-weight:800;cursor:pointer}details.report-detail .detail-body{padding:0 14px 14px}.report-detail .chart{height:150px}
     .download-note{font-size:10px;color:#64748b;margin-top:5px}.small-note{font-size:10px;color:#64748b}
     @media(max-width:440px){.mode-grid{grid-template-columns:1fr}.asset-rows{grid-template-columns:1fr 1fr}.asset-mini .v{font-size:17px}.cash-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.cash-strip .cash-item:last-child{grid-column:1/-1}.pressure-row{grid-template-columns:repeat(3,minmax(0,1fr))}.pressure-mini{padding:7px 6px}.pressure-mini .v{font-size:12px}.report-summary-card{padding:12px}.report-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+
+    /* MVP 0.5 */
+    .mode-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .news-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:4px}.news-head h2{margin:0}.stage-badge{display:inline-block;max-width:52%;padding:4px 8px;border:1px solid #3a4b64;border-radius:999px;font-size:11px;font-weight:850;color:#dbeafe;background:#0e1724;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .portfolio-card{padding-top:12px}.asset-head{display:flex;justify-content:space-between;gap:8px;align-items:center}.asset-head .k{font-size:13px;font-weight:850;color:#cbd5e1}.asset-head .weight{font-size:11px;font-weight:800;color:#94a3b8;white-space:nowrap}.asset-mini .perf{font-size:14px;font-weight:850;margin-top:8px}.asset-mini .perf span{line-height:1.25}.asset-mini .v{margin-top:5px}
+    .cash-strip{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.cash-item.total-mini .v{font-size:12px}.cash-item.total-mini{opacity:.92}
+    .pressure-row{grid-template-columns:1.35fr .9fr .9fr}.pressure-mini.primary-loss{border-color:#41546e;background:#101925}.pressure-mini.primary-loss .k{font-weight:850}.pressure-mini.primary-loss .v{font-size:20px;font-weight:950;letter-spacing:-.02em}.pressure-mini:not(.primary-loss) .v{font-size:14px}
+    .context-line{padding:8px 0}.context-title{font-size:15px;line-height:1.3}.context-line .small{font-size:12px;line-height:1.35}.context-neutral{font-size:13px}
+    .decision-dock{grid-template-columns:1fr 1fr}.decision-dock .trade-first{order:1}.decision-dock .primary-next{order:2}.decision-dock button{min-width:0;padding-left:8px;padding-right:8px}
+    .month-arrival h2{font-size:22px;margin-bottom:5px}.month-arrival .month-question{font-size:14px;color:#cbd5e1;margin:0 0 10px}.month-arrival .month-amount{font-size:13px;color:#94a3b8;margin-bottom:12px}
+    .title-card{border:1px solid #5d4a19;background:linear-gradient(180deg,#201a0c,#15130e);border-radius:12px;padding:11px 12px;margin:10px 0}.title-card .eyebrow{font-size:10px;color:#fcd34d;font-weight:900;letter-spacing:.08em}.title-card .main-title{font-size:23px;font-weight:950;margin-top:2px}.title-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}.title-tag{font-size:11px;padding:3px 7px;border-radius:999px;background:#2a2415;color:#fde68a;border:1px solid #665321}
+    .report-actions{grid-template-columns:1.2fr 1fr 1fr}.share-status{font-size:11px;color:#94a3b8;margin-top:6px;min-height:1.4em}
+    @media(max-width:440px){.mode-grid{grid-template-columns:1fr}.cash-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.cash-strip .cash-item:last-child{grid-column:auto}.pressure-row{grid-template-columns:1.25fr .9fr .9fr}.pressure-mini.primary-loss .v{font-size:16px}.asset-mini .perf{font-size:13px}.decision-dock{grid-template-columns:1fr 1fr}.decision-dock button{font-size:13px;min-height:46px}.report-actions{grid-template-columns:1fr 1fr}.report-actions button:first-child{grid-column:1/-1}.stage-badge{max-width:48%;font-size:10px}.title-card .main-title{font-size:21px}}
+
   </style>
 </head>
 <body>
 <div class="wrap">
   <div class="topbar">
-    <div><div class="brand">投資壓力模擬器</div><div class="small muted">MVP 0.4｜一年高壓版</div></div>
+    <div><div class="brand">投資壓力模擬器</div><div class="small muted">MVP 0.5｜半年高壓版</div></div>
     <div class="inline"><span class="badge" id="saveBadge">未開始</span><button class="secondary hidden" id="resetBtn">清除本機資料</button></div>
   </div>
 
@@ -74,7 +89,7 @@
     <div class="card">
       <h2>0｜遊戲模式</h2>
       <div class="mode-grid">
-        <div class="mode-card active"><div class="mode-title">一般模式</div><div class="mode-meta">52 週｜約 8～12 分鐘<br>快速壓力測試・基本資產・收入風險</div></div>
+        <div class="mode-card active"><div class="mode-title">一般模式</div><div class="mode-meta">26 週｜約 5～8 分鐘<br>半年快速壓力測試・基本資產・收入風險</div></div>
         <div class="mode-card disabled"><div class="mode-title">進階模式｜開發中</div><div class="mode-meta">更長週期・更多資產・更多人生事件</div></div>
         <div class="mode-card disabled"><div class="mode-title">戰情模式｜開發中</div><div class="mode-meta">完整市場資訊・高階資金工具・重度策略測試</div></div>
       </div>
@@ -84,8 +99,6 @@
       <h2>1｜真實資產</h2>
       <p class="muted">投資現金與緊急預備金直接分開填，不需要先合併成「總現金」。資料只存在這個瀏覽器。</p>
       <div class="grid">
-        <div class="field"><label>目前年齡</label><input id="age" type="number" min="18" max="90" value="31"></div>
-        <div class="field"><label>預計退休年齡</label><input id="retireAge" type="number" min="30" max="100" value="60"></div>
         <div class="field"><label>股票市值（元）</label><input id="stock" type="number" min="0" step="1000" value="600000"></div>
         <div class="field"><label>債券市值（元，沒有填 0）</label><input id="bond" type="number" min="0" step="1000" value="125000"></div>
         <div class="field"><label>投資現金（元）</label><input id="cash" type="number" min="0" step="1000" value="120000"></div>
@@ -107,30 +120,32 @@
   <section id="game" class="hidden">
     <div class="card game-summary">
       <div class="market-head">
-        <div><div class="week" id="weekLabel">第 1 週</div><div class="mode-chip">一般模式｜52 週</div></div>
-        <div class="small muted" id="ageLabel"></div>
+        <div><div class="week" id="weekLabel">第 1 週</div><div class="mode-chip">一般模式｜26 週（約半年）</div></div>
       </div>
     </div>
 
+    <div class="card news-compact">
+      <div class="news-head"><h2>本週市場敘事</h2><span class="stage-badge" id="arcTag">市場階段</span></div>
+      <div id="news"></div>
+    </div>
+
     <div class="card portfolio-card">
-      <div class="portfolio-top">
-        <div><div class="small muted">目前總資產</div><div class="portfolio-total" id="totalAssetCompact">NT$ 0</div></div>
-        <div style="text-align:right"><div class="small muted">股票水位</div><div style="font-size:20px;font-weight:850" id="stockWeightCompact">0%</div></div>
-      </div>
       <div class="asset-rows" id="assetRows"></div>
       <div class="cash-strip">
         <div class="cash-item"><div class="k">投資現金</div><div class="v" id="investCashCompact">NT$ 0</div></div>
         <div class="cash-item"><div class="k">緊急預備金</div><div class="v" id="reserveCompact">NT$ 0</div></div>
         <div class="cash-item"><div class="k">目前每月本業現金流</div><div class="v" id="monthlyIncomeCompact">NT$ 0</div></div>
+        <div class="cash-item total-mini"><div class="k">目前總資產</div><div class="v" id="totalAssetCompact">NT$ 0</div></div>
       </div>
       <div class="pressure-row" id="pressureRow"></div>
     </div>
 
     <div id="incomeCard" class="card interrupt-card income-alert hidden"></div>
 
-    <div id="monthlyCard" class="card interrupt-card hidden">
-      <h2>本月資金配置</h2>
-      <p>本月可自由配置現金流：<strong id="monthlyAmount"></strong></p>
+    <div id="monthlyCard" class="card interrupt-card month-arrival hidden">
+      <h2>本月收入可支配資金進帳！</h2>
+      <p class="month-question">你要分配多少在投資／預備金？</p>
+      <div class="month-amount">本月可分配：<strong id="monthlyAmount"></strong></div>
       <div class="grid">
         <div class="field"><label>加入投資現金</label><input id="monthlyToCash" type="number" min="0" step="1000"></div>
         <div class="field"><label>補入緊急預備金</label><input id="monthlyToReserve" type="number" min="0" step="1000"></div>
@@ -141,11 +156,6 @@
 
     <div id="lifeCard" class="card interrupt-card hidden"></div>
 
-    <div class="card news-compact">
-      <h2>本週市場敘事</h2>
-      <div id="news"></div>
-    </div>
-
     <div class="card context-card" id="contextCard">
       <div class="context-head"><h2>本週壓力點</h2><span class="small muted" id="contextWeekTag"></span></div>
       <div id="milestoneBox"></div>
@@ -153,8 +163,8 @@
     </div>
 
     <div class="decision-dock" id="decisionDock">
+      <button class="secondary trade-first" id="tradeToggleBtn">我要買賣／調整資產</button>
       <button class="primary-next" id="quickNextBtn">維持目前配置 → 下一週</button>
-      <button class="secondary" id="tradeToggleBtn">我要買賣／調整資產</button>
     </div>
 
     <div class="card trade-panel hidden" id="tradeCard">
@@ -172,13 +182,15 @@
 
   <section id="report" class="hidden">
     <div class="card report-summary-card">
-      <div class="badge">一般模式｜正式摘要報告</div>
+      <div class="badge">一般模式｜26 週正式摘要報告</div>
       <h1>這一局，你是怎麼走過來的？</h1>
       <div class="report-scenario" id="scenarioReveal"></div>
+      <div class="title-card" id="playerTitle"></div>
       <div class="report-grid" id="reportStats"></div>
       <div class="report-highlights" id="reportHighlights"></div>
-      <div class="report-actions"><button id="downloadReportBtn">下載完整報告</button><button class="secondary" id="replayBtn">再玩一局</button></div>
-      <div class="download-note">下載格式為獨立 HTML 報告，可保存、分享或用瀏覽器列印成 PDF。</div>
+      <div class="report-actions"><button id="shareImageBtn">產生分享圖片</button><button class="secondary" id="downloadReportBtn">完整報告 HTML</button><button class="secondary" id="replayBtn">再玩一局</button></div>
+      <div class="share-status" id="shareStatus"></div>
+      <div class="download-note">分享圖片會優先叫出手機分享選單；完整報告仍可另存 HTML。</div>
     </div>
 
     <details class="report-detail"><summary>策略一致性與完整結論</summary><div class="detail-body" id="consistency"></div></details>
@@ -188,11 +200,11 @@
     <div class="actions"><button class="secondary" id="clearAfterBtn">清除本機資料</button></div>
   </section>
 
-  <div class="footer-note">MVP 0.4｜僅為互動模擬與教育用途，不構成任何個人化投資建議。</div>
+  <div class="footer-note">MVP 0.5｜僅為互動模擬與教育用途，不構成任何個人化投資建議。</div>
 </div>
 <script>
 (() => {
-  const STORAGE_KEY = 'investment_stress_mvp_v04';
+  const STORAGE_KEY = 'investment_stress_mvp_v05';
   const fmt = new Intl.NumberFormat('zh-TW', { maximumFractionDigits: 0 });
   const pct = (x, d=1) => `${x >= 0 ? '+' : ''}${x.toFixed(d)}%`;
   const money = x => `NT$ ${fmt.format(Math.round(x || 0))}`;
@@ -205,60 +217,43 @@
 
   const SCENARIOS = [
     {
-      id:'v_recovery', name:'V 型恐慌後快速復甦', endWeek:52,
-      summary:'市場在前段快速跌入熊市，隨後在高度懷疑中反彈並重新創高。真正的壓力是急跌與踏空恐懼快速切換。',
-      anchors:[[0,0],[2,-5],[4,-12],[7,-22],[10,-29],[14,-17],[20,-8],[28,2],[39,10],[52,16]],
+      id:'v_recovery', name:'V 型恐慌後快速復甦', endWeek:26,
+      summary:'市場在短時間內快速跌入熊市，隨後在高度懷疑中反彈並重新創高。真正的壓力是急跌與踏空恐懼快速切換。',
+      anchors:[[0,0],[1,-5],[2,-12],[4,-22],[5,-29],[7,-17],[10,-8],[14,2],[20,10],[26,16]],
       arcs:[
-        [1,5,'修正開始',['大型權值股快速走弱，市場開始重新評估高估值資產。','波動率升高，防禦型資產獲得資金青睞。','投資人仍普遍認為這只是正常修正。']],
-        [6,13,'恐慌升溫',['衰退疑慮快速升高，企業獲利預期開始被下修。','賣壓擴散到原本相對抗跌的資產。','市場開始討論是否已進入真正熊市。']],
-        [14,27,'暴力修復',['政策與通膨訊號改善，市場出現強力反彈。','空頭回補放大漲勢，但多數人仍懷疑只是逃命波。','低點減碼的投資人開始面臨踏空壓力。']],
-        [28,52,'重新定價',['企業財測沒有出現最悲觀情境，資金持續回流風險資產。','主要指數逐步收復失土，市場情緒從恐懼轉向追價焦慮。','市場重新挑戰高點，但對景氣前景仍有分歧。']]
+        [1,3,'修正開始'],[4,7,'恐慌升溫'],[8,14,'暴力修復'],[15,26,'重新定價']
       ]
     },
     {
-      id:'w_bear', name:'W 型大型熊市', endWeek:52,
+      id:'w_bear', name:'W 型大型熊市', endWeek:26,
       summary:'第一波急跌後出現足以讓人相信危機結束的反彈，第二波卻跌得更深，考驗資金續航。',
-      anchors:[[0,0],[3,-8],[6,-17],[10,-28],[15,-14],[20,-29],[25,-41],[31,-30],[38,-18],[45,-6],[52,3]],
+      anchors:[[0,0],[2,-8],[3,-17],[5,-28],[8,-14],[10,-29],[13,-41],[16,-30],[19,-18],[23,-6],[26,3]],
       arcs:[
-        [1,10,'第一波熊市',['企業財測轉弱，市場快速調降成長預期。','避險需求升溫，股市跌幅持續擴大。','市場開始押注政策是否會出手穩定景氣。']],
-        [11,18,'假性復甦',['政策訊號帶動市場強彈，媒體開始討論熊市是否結束。','錯失第一波反彈的資金重新提高風險曝險。','短期數據改善，讓市場重新相信軟著陸。']],
-        [19,30,'第二波下殺',['經濟數據再次轉弱，企業裁員與信用壓力增加。','前一波反彈被證明過度樂觀，市場跌破前低。','流動性惡化，投資人重新面對更深的資產損失。']],
-        [31,42,'築底',['政策支持逐步發酵，但經濟數據仍然疲弱。','市場對壞消息的反應開始鈍化，長期資金慢慢回來。','反彈仍反覆失敗，信心恢復速度很慢。']],
-        [43,52,'復甦',['盈餘下修速度放緩，市場開始領先基本面反彈。','悲觀預期逐步修正，指數重新接近高點。','市場開始從生存問題轉向是否追價。']]
+        [1,5,'第一波熊市'],[6,9,'假性復甦'],[10,15,'第二波下殺'],[16,21,'築底'],[22,26,'復甦']
       ]
     },
     {
-      id:'long_bear', name:'慢性長熊', endWeek:52,
-      summary:'沒有單一瞬間的末日，而是反覆失望、反彈失敗與時間消耗；一年後市場仍沒有完全修復。',
-      anchors:[[0,0],[4,-6],[9,-14],[16,-24],[22,-15],[30,-30],[38,-39],[45,-31],[52,-21]],
+      id:'long_bear', name:'慢性長熊', endWeek:26,
+      summary:'沒有單一瞬間的末日，而是反覆失望、反彈失敗與時間消耗；半年後市場仍沒有完全修復。',
+      anchors:[[0,0],[2,-6],[5,-14],[8,-24],[11,-15],[15,-30],[19,-39],[23,-31],[26,-21]],
       arcs:[
-        [1,14,'緩慢惡化',['市場沒有崩盤，但每一次反彈都遇到賣壓。','成長持續低於預期，投資人逐漸失去耐心。','市場開始從「回檔」改口為「長期重新定價」。']],
-        [15,28,'反彈與再失望',['短暫利多推升市場，但企業盈餘改善速度不如預期。','多數人相信底部已過，指數卻再次走弱。','長時間無法回到高點，原本的投資紀律開始被時間消耗。']],
-        [29,43,'耐心耗損',['熊市拖延，市場討論焦點從恐慌轉為疲乏。','資產價格持續低迷，卻沒有單一事件可以宣告危機結束。','每次反彈都帶來希望，每次回落又重新消耗信心。']],
-        [44,52,'有限修復',['經濟數據逐步穩定，市場開始低調回升。','即使市場改善，距離高點仍有明顯差距。','長期持有者開始重新檢查現金與時間是否足夠。']]
+        [1,7,'緩慢惡化'],[8,14,'反彈與再失望'],[15,22,'耐心耗損'],[23,26,'有限修復']
       ]
     },
     {
-      id:'deep_crisis', name:'深度金融危機', endWeek:52,
+      id:'deep_crisis', name:'深度金融危機', endWeek:26,
       summary:'流動性與信用體系受壓，市場多次急殺與政策反擊，最大跌幅超過五成，本業收入也更可能遭遇衝擊。',
-      anchors:[[0,0],[2,-9],[4,-18],[7,-32],[10,-21],[15,-43],[21,-56],[27,-35],[33,-49],[40,-30],[46,-12],[52,1]],
+      anchors:[[0,0],[1,-9],[2,-18],[4,-32],[5,-21],[8,-43],[11,-56],[14,-35],[17,-49],[20,-30],[23,-12],[26,1]],
       arcs:[
-        [1,9,'系統壓力',['金融機構風險消息快速增加，信用利差擴大。','市場流動性明顯變差，大型資產也開始被拋售。','政策單位表示金融體系仍具韌性，但市場並不買單。']],
-        [10,16,'第一次救市',['緊急流動性措施推出，市場出現歷史級反彈。','投資人爭論系統性風險是否已被控制。','部分資金迅速回補先前被錯殺的資產。']],
-        [17,29,'危機核心',['新的金融機構出現壓力，企業融資成本飆升。','經濟衰退預期大幅上修，失業與收入風險開始受到討論。','市場跌破前低，恐慌情緒接近極端。']],
-        [30,40,'二次震盪',['政策救援規模擴大，金融市場暫時恢復運作。','經濟數據仍差，但市場不再對每則壞消息創新低。','反彈與急跌交錯，方向判斷非常困難。']],
-        [41,52,'危機後復原',['信用市場逐步穩定，政策開始從救火轉為支持復甦。','股市領先經濟數據回升，悲觀敘事仍持續。','市場重新接近高點，但危機留下的資金與收入傷痕仍在。']]
+        [1,5,'系統壓力'],[6,8,'第一次救市'],[9,15,'危機核心'],[16,20,'二次震盪'],[21,26,'危機後復原']
       ]
     },
     {
-      id:'false_alarm', name:'虛驚／小熊後創新高', endWeek:52,
+      id:'false_alarm', name:'虛驚／小熊後創新高', endWeek:26,
       summary:'市場一度跌入技術性熊市，但衰退沒有真正發生；真正的壓力是太早退出後的踏空與追價。',
-      anchors:[[0,0],[3,-5],[6,-11],[10,-18],[13,-23],[18,-11],[24,-3],[31,5],[41,14],[52,24]],
+      anchors:[[0,0],[2,-5],[3,-11],[5,-18],[7,-23],[9,-11],[12,-3],[16,5],[21,14],[26,24]],
       arcs:[
-        [1,12,'衰退恐慌',['成長數據轉弱，市場開始擔心經濟衰退。','企業獲利預期小幅下修，投資人降低風險曝險。','主要指數逐步逼近熊市區間。']],
-        [13,24,'疑慮消退',['就業與消費仍具韌性，最悲觀預測開始修正。','通膨放緩但經濟沒有明顯崩壞，市場快速收復失土。','大量投資人仍認為反彈只是逃命波。']],
-        [25,40,'創高爭議',['市場重新創高，但空手投資人質疑漲勢合理性。','企業獲利優於悲觀預期，資金持續流入。','先前賣出的投資人開始面臨追回壓力。']],
-        [41,52,'牛市延伸',['市場持續創高，先前的衰退敘事逐漸淡出。','高風險資產表現強勢，市場情緒快速轉為樂觀。','曾在低點減碼的投資人面臨是否重新進場的抉擇。']]
+        [1,6,'衰退恐慌'],[7,12,'疑慮消退'],[13,20,'創高爭議'],[21,26,'牛市延伸']
       ]
     }
   ];
@@ -281,8 +276,7 @@
   function clearSave(){localStorage.removeItem(STORAGE_KEY);state=null;currentTurnPrepared=false;$('saveBadge').textContent='未開始';$('resumeBtn').classList.add('hidden');$('resetBtn').classList.add('hidden');showView('landing');}
 
   function validateSetup(){
-    const age=+$('age').value, retireAge=+$('retireAge').value, stock=+$('stock').value, bond=+$('bond').value, cash=+$('cash').value, reserve=+$('reserve').value, monthlyCash=+$('monthlyCash').value;
-    if(!Number.isFinite(age)||!Number.isFinite(retireAge)||retireAge<=age) return '退休年齡必須高於目前年齡。';
+    const stock=+$('stock').value, bond=+$('bond').value, cash=+$('cash').value, reserve=+$('reserve').value, monthlyCash=+$('monthlyCash').value;
     if([stock,bond,cash,reserve,monthlyCash].some(x=>!Number.isFinite(x)||x<0)) return '資產數字不能是負數。';
     if(stock+bond+cash+reserve<=0) return '至少要有一項資產大於 0。';
     return null;
@@ -331,12 +325,11 @@
   function createGame(){
     const err=validateSetup(); if(err){alert(err);return}
     const seedText = `${Date.now()}-${Math.random()}`; const seed=hashSeed(seedText); const rng=mulberry32(seed);
-    const scenario=pick(rng,SCENARIOS); const market=generatePath(scenario,rng); const bondReturns=generateBondReturns(52,rng,scenario.id);
+    const scenario=pick(rng,SCENARIOS); const market=generatePath(scenario,rng); const bondReturns=generateBondReturns(26,rng,scenario.id);
     const stock=+$('stock').value,bond=+$('bond').value,investCash=+$('cash').value,reserve=+$('reserve').value;
     const initialInvestment=stock+bond+investCash; const initialTotal=initialInvestment+reserve;
     state={
-      version:'0.4', mode:'normal', seed, scenarioId:scenario.id, week:0, endWeek:52, finished:false,
-      age:+$('age').value, retireAge:+$('retireAge').value,
+      version:'0.5', mode:'normal', seed, scenarioId:scenario.id, week:0, endWeek:26, finished:false,
       baseMonthlyCashFlow:+$('monthlyCash').value,currentMonthlyCashFlow:+$('monthlyCash').value,monthlyCashFlow:+$('monthlyCash').value,
       stockValue:stock,bondValue:bond,investCash,reserve,
       initial:{stock,bond,cash:investCash,reserve,total:initialTotal,investment:initialInvestment},
@@ -348,7 +341,7 @@
       totalCashflowAdded:0,totalToInvestment:0,totalToReserve:0,totalBought:0,totalSold:0,
       buyCount:0,sellCount:0,reserveUsedForInvesting:0,reserveTransferCount:0,forcedSaleCount:0,
       logs:[],assetHistory:[{week:0,total:initialTotal,investmentIndex:100,market:100}],
-      lifeEvents:generateLifeSchedule(52,rng,initialTotal,+$('monthlyCash').value), handledLifeWeeks:[],
+      lifeEvents:generateLifeSchedule(26,rng,initialTotal,+$('monthlyCash').value), handledLifeWeeks:[],
       pendingMonthly:null,pendingLife:null,pendingIncome:null,lastMonthIndex:0,
       activeIncomeShock:null,incomeShockCount:0,incomeRecoveredThisWeek:false,
       minInvestCash:investCash,minReserve:reserve,maxStockWeight:0,minStockWeight:1,
@@ -369,8 +362,7 @@
     state.minInvestCash=Math.min(state.minInvestCash ?? state.investCash,state.investCash); state.minReserve=Math.min(state.minReserve ?? state.reserve,state.reserve);
     const sw=stockWeight(); state.maxStockWeight=Math.max(state.maxStockWeight||0,sw); state.minStockWeight=Math.min(state.minStockWeight ?? sw,sw);
   }
-  function currentMonthIndex(week){return Math.floor(Math.max(0,week-1)*12/52)}
-  function simulatedAge(){return state.age + state.week/52}
+  function currentMonthIndex(week){return Math.floor(Math.max(0,week)*6/26)}
 
   function markMilestone(id,title,text,tone='warning'){
     state.milestonesSeen=state.milestonesSeen||[];
@@ -405,7 +397,6 @@
       if(bearWeeks>=26) add(markMilestone('bear_26','熊市狀態已持續約半年',`市場連續約 ${bearWeeks} 週仍低於高點 20% 以上。`));
       if(bearWeeks>=52) add(markMilestone('bear_52','熊市狀態已持續約一年',`市場連續約 ${bearWeeks} 週仍處於熊市區間。`));
     }
-    if(Math.max(0,state.retireAge-simulatedAge())<=5) add(markMilestone('retire_5','距離預計退休剩不到 5 年',`目前模擬年齡 ${simulatedAge().toFixed(1)} 歲。`));
     return out.slice(0,3);
   }
 
@@ -413,70 +404,72 @@
   function lastDecision(action,asset){return [...decisionLogs()].reverse().find(d=>(!action||d.action===action)&&(!asset||d.asset===asset))}
 
   function getContextInsights(){
-    const insights=[];
-    const push=(priority,title,text,tone='')=>insights.push({priority,title,text,tone});
-    const inv=investmentAssets(); const cashRatio=inv>0?state.investCash/inv:0; const sw=stockWeight();
-    const initialSW=state.initialStockWeight ?? 0; const rebound=state.lowestMarketLevel>0?state.marketLevel/state.lowestMarketLevel-1:0;
-    const pl=equivalentInvestmentPL(); const plPct=(state.portfolioIndex||100)-100;
-
+    const insights=[]; const push=(priority,title,text,tone='')=>insights.push({priority,title,text,tone});
+    const inv=investmentAssets(), cashRatio=inv>0?state.investCash/inv:0, rebound=state.lowestMarketLevel>0?state.marketLevel/state.lowestMarketLevel-1:0;
+    const pl=equivalentInvestmentPL(), plPct=(state.portfolioIndex||100)-100;
     if(state.activeIncomeShock){
-      const left=Math.max(0,state.activeIncomeShock.endWeek-state.week+1);
-      push(110,'市場已開始影響你的本業現金流',`目前每月可配置現金流為 ${money(state.currentMonthlyCashFlow)}，較開局 ${money(state.baseMonthlyCashFlow)} 減少 ${Math.round((1-state.activeIncomeShock.multiplier)*100)}%，預計還有約 ${left} 週。`,'negative');
-    } else if(state.incomeRecoveredThisWeek) push(88,'本業現金流恢復',`先前的收入衝擊結束，本月起可配置現金流恢復為 ${money(state.baseMonthlyCashFlow)}。`,'positive');
-
-    if(cashRatio<=.05) push(105,'你的投資流動性已接近極限',`投資現金只剩 ${money(state.investCash)}（投資資產 ${(cashRatio*100).toFixed(1)}%）。如果市場繼續下跌，你已很難靠現金明顯提高部位。`,'negative');
-    else if(cashRatio<=.10) push(98,'投資現金已非常有限',`目前投資現金 ${money(state.investCash)}，只占投資資產 ${(cashRatio*100).toFixed(1)}%。`,'warning');
-    else if(cashRatio>=.25 && state.drawdown<=-20) push(48,'你仍保有相當多的投資彈藥',`市場已進入深度回撤，但你的投資現金仍占投資資產 ${(cashRatio*100).toFixed(1)}%。`);
-
-    if(plPct<=-20) push(102,'排除每月收入後，投資損失已經很深',`你的投資組合淨表現約 ${pct(plPct)}，以開局投資資產換算約 ${money(pl)}。每月新增收入不再把這個損失藏起來。`,'negative');
-    else if(plPct<=-10) push(82,'投資帳面壓力正在累積',`排除預備金與後續現金流後，投資組合目前約 ${pct(plPct)}，等值損益 ${money(pl)}。`,'negative');
-    else if(plPct<=-5) push(60,'你的投資組合已出現可感知損失',`排除後續收入後，目前投資淨表現約 ${pct(plPct)}，等值損益 ${money(pl)}。`);
-
-    if(state.weekReturn<=-4) push(84,'本週出現明顯急跌',`股票市場單週 ${pct(state.weekReturn)}，目前距離市場高點 ${pct(state.drawdown)}。`,'negative');
-    else if(state.weekReturn>=4 && state.drawdown<=-10) push(86,'深跌中的急彈正在測試你的判斷',`股票市場本週反彈 ${pct(state.weekReturn)}，但距離市場高點仍有 ${pct(state.drawdown)}。恐慌可能正在快速轉成踏空焦慮。`,'positive');
-    else if(state.drawdown<=-30) push(76,'市場已進入深度熊市區間',`目前距離市場高點 ${pct(state.drawdown)}；這已不是一般修正。`,'negative');
-    else if(state.drawdown<=-20) push(67,'市場仍處於熊市',`目前距離市場高點 ${pct(state.drawdown)}。接下來每一次反彈都可能同時帶來希望與追價壓力。`);
-    else if(state.drawdown<=-10) push(45,'修正幅度已開始影響資產感受',`市場距離高點 ${pct(state.drawdown)}，但後續方向仍未知。`);
-
+      const left=Math.max(0,state.activeIncomeShock.endWeek-state.week+1), old=state.activeIncomeShock.oldAmount||state.baseMonthlyCashFlow, now=state.currentMonthlyCashFlow, cut=old>0?(old-now)/old*100:0;
+      push(120,`本業收入少 ${cut.toFixed(0)}%`,`每月少 ${money(old-now)}｜剩約 ${left} 週`,'negative');
+    }
+    if(pl<0){
+      const priority=Math.abs(plPct)>=20?115:Math.abs(plPct)>=10?100:72;
+      push(priority,`你已虧掉 ${money(Math.abs(pl))}`,`投資淨表現 ${pct(plPct)}｜最大回撤 ${pct(state.maxPlayerDrawdown)}`,'negative');
+    } else if(pl>0) push(55,`投資目前賺 ${money(pl)}`,`投資淨表現 ${pct(plPct)}`,'positive');
+    if(cashRatio<=.05) push(112,`投資現金只剩 ${money(state.investCash)}`,`彈藥僅占投資資產 ${(cashRatio*100).toFixed(1)}%`,'negative');
+    else if(cashRatio<=.10) push(101,`投資現金快見底`,`只剩 ${money(state.investCash)}｜占比 ${(cashRatio*100).toFixed(1)}%`,'warning');
+    if(state.weekReturn<=-4) push(108,`本週再跌 ${Math.abs(state.weekReturn).toFixed(1)}%`,`距市場高點 ${pct(state.drawdown)}`,'negative');
+    else if(state.weekReturn>=4 && state.drawdown<=-10) push(106,`本週急彈 ${state.weekReturn.toFixed(1)}%`,`但仍距高點 ${pct(state.drawdown)}`,'positive');
     const lastSell=lastDecision('sell','stock');
-    if(lastSell && lastSell.marketLevel){const afterSell=state.marketLevel/lastSell.marketLevel-1;if(afterSell>=.10 && state.week>lastSell.week) push(99,'你減碼後，市場已明顯反彈',`你在第 ${lastSell.week} 週賣出 ${money(lastSell.amount)} 股票；此後市場上漲約 ${(afterSell*100).toFixed(1)}%。壓力可能已從「怕跌」轉成「怕踏空」。`,'warning');}
+    if(lastSell && lastSell.marketLevel && state.week>lastSell.week){const r=state.marketLevel/lastSell.marketLevel-1;if(r>=.10)push(110,`你賣出後又漲 ${(r*100).toFixed(1)}%`,`踏空壓力正在升高`,'warning');}
     const lastBuy=lastDecision('buy','stock');
-    if(lastBuy && state.week>lastBuy.week && state.drawdown<=lastBuy.drawdown-7) push(97,'你加碼後，市場又跌了一段',`你在第 ${lastBuy.week} 週買進 ${money(lastBuy.amount)}；目前市場又比當時多跌約 ${(lastBuy.drawdown-state.drawdown).toFixed(1)} 個百分點。`,'negative');
+    if(lastBuy && state.week>lastBuy.week && state.drawdown<=lastBuy.drawdown-7) push(109,`你加碼後又多跌 ${(lastBuy.drawdown-state.drawdown).toFixed(1)} 個百分點`,`現金續航開始更重要`,'negative');
     const lastReserve=lastDecision('reserveToCash');
-    if(lastReserve && state.week>lastReserve.week && state.drawdown<=lastReserve.drawdown-5) push(108,'動用預備金後，市場仍在下跌',`你在第 ${lastReserve.week} 週動用 ${money(lastReserve.amount)} 預備金；目前市場又比當時多跌約 ${(lastReserve.drawdown-state.drawdown).toFixed(1)} 個百分點。`,'negative');
-
-    if(sw<=initialSW-.15 && rebound>=.10) push(80,'你的股票曝險已低於開局很多',`目前股票水位 ${(sw*100).toFixed(1)}%，比開局低 ${((initialSW-sw)*100).toFixed(1)} 個百分點；市場已自低點反彈 ${(rebound*100).toFixed(1)}%。`,'warning');
-    else if(sw>=initialSW+.15 && state.drawdown<=-20) push(65,'你的股票曝險已明顯高於開局',`目前股票水位 ${(sw*100).toFixed(1)}%，比開局高 ${((sw-initialSW)*100).toFixed(1)} 個百分點。`);
-    if(state.reserveTransferCount>0 && state.reserve < state.initial.reserve*.5) push(91,'你的安全墊已被明顯侵蝕',`緊急預備金目前剩 ${money(state.reserve)}，不到開局的一半。`,'negative');
-    if(state.bearStartWeek!=null && state.week-state.bearStartWeek+1>=13) push(58,'熊市正在從價格壓力變成時間壓力',`市場已連續約 ${state.week-state.bearStartWeek+1} 週處於熊市區間。`);
-
-    return insights.sort((a,b)=>b.priority-a.priority).slice(0,3);
+    if(lastReserve && state.week>lastReserve.week && state.drawdown<=lastReserve.drawdown-5) push(118,`動用預備金後仍續跌`,`又多跌 ${(lastReserve.drawdown-state.drawdown).toFixed(1)} 個百分點`,'negative');
+    if(state.reserveTransferCount>0 && state.reserve < state.initial.reserve*.5) push(104,`安全墊剩不到一半`,`預備金只剩 ${money(state.reserve)}`,'negative');
+    if(state.bearStartWeek!=null && state.week-state.bearStartWeek+1>=7) push(78,`熊市已拖 ${state.week-state.bearStartWeek+1} 週`,`價格壓力正在變成時間壓力`);
+    if(!insights.length) push(10,'本週沒有新壓力','維持配置也是一個決策');
+    return insights.sort((a,b)=>b.priority-a.priority).slice(0,2);
   }
 
   function buildNarrativeVoices(){
-    const arc=getArc(state.week); const rng=mulberry32(hashSeed(`${state.seed}-voices-${state.week}`));
-    const out=[{source:'財經新聞',text:pick(rng,arc[3])}];
+    const arc=getArc(state.week); const stage=arc[2]; const rng=mulberry32(hashSeed(`${state.seed}-voices-${state.week}`));
+    const down=state.weekReturn<=-2.5, up=state.weekReturn>=2.5;
+    const rescue=/救市|復原|築底|疑慮消退/.test(stage);
+    const deep=state.drawdown<=-25;
+    let newsPool=[];
+    if(rescue && down){
+      newsPool=['救市與護盤訊號出現，但賣壓仍未止住，市場本週再度走低。','政策資金穩定市場的期待升高，但投資人仍持續降低風險部位。','市場討論國安基金是否擴大護盤，短線賣壓仍然沉重。'];
+    } else if(rescue && up){
+      newsPool=['政策穩定措施帶動急彈，市場開始爭論最壞時刻是否已經過去。','護盤與流動性措施提振信心，市場本週明顯反彈。','國安基金進場題材升溫，市場出現強勁反彈，但基本面疑慮仍在。'];
+    } else if(down){
+      newsPool=deep?['信用與獲利疑慮升高，市場本週再度急跌。','賣壓持續擴散，主要指數再次向下測試低點。','風險資產同步承壓，市場距離高點的跌幅持續擴大。']:['市場本週明顯回落，投資人開始重新評估風險。','大型權值股轉弱，短線賣壓升高。','成長與獲利疑慮使市場本週走低。'];
+    } else if(up){
+      newsPool=deep?['深跌後出現明顯反彈，但市場仍遠低於高點。','低接與空頭回補推升市場，本週出現強彈。','市場大幅反彈，投資人開始爭論這是止跌還是逃命波。']:['市場本週走高，風險偏好短暫回升。','買盤回流大型權值股，指數明顯反彈。','市場情緒改善，本週價格向上修復。'];
+    } else {
+      newsPool=deep?['市場在深度回撤區間震盪，方向仍沒有共識。','價格暫時止穩，但信用與景氣疑慮仍未解除。','市場進入高壓盤整，多空都在等待下一個訊號。']:['市場本週變動有限，投資人仍在等待更明確訊號。','多空拉鋸，價格沒有形成一致方向。','市場暫時盤整，短期方向仍不明朗。'];
+    }
+    const out=[{source:'財經新聞',text:pick(rng,newsPool)}];
     const rebound=state.lowestMarketLevel>0?state.marketLevel/state.lowestMarketLevel-1:0;
     const marketComments={
-      crisis:['信用與企業獲利的不確定性仍高，短期反彈不代表風險已解除。','市場價格已反映大量悲觀預期，但基本面尚未確認觸底。','波動正在放大，資金管理的重要性高於猜測單一底部。'],
-      rebound:['市場開始爭論這是趨勢反轉，還是熊市中的強力反彈。','部分資金認為最壞情境已被提前反映，但仍有人等待基本面確認。','短線買盤明顯回來，但中期方向仍沒有共識。'],
-      normal:['市場目前沒有形成一致方向，投資人仍在等待更多訊號。','短期價格波動仍大於基本面資訊的變化速度。','市場正在重新定價，但還沒有足夠訊息宣告趨勢改變。']
+      crisis:['資金管理的重要性已高於猜測單一底部。','市場已反映大量悲觀，但基本面仍沒確認觸底。','現在最大的問題不是便不便宜，而是壓力還會持續多久。'],
+      rebound:['這是趨勢反轉，還是熊市反彈，市場沒有共識。','價格修復得比基本面快，追價風險正在上升。','反彈很強，但最壞情境是否解除仍不確定。'],
+      normal:['市場沒有形成一致方向，下一個訊號仍可能快速改變情緒。','短期價格波動仍大於基本面資訊變化。','市場正在重新定價，但還不能宣告趨勢改變。']
     };
     const social={
-      panic:['「今天這根也太誇張，真的有人敢接嗎？」','「每次以為夠便宜，隔天又更便宜。」','「我現在只想知道到底還要跌多久。」','「先不要跟我講長期，我帳面已經看不下去了。」'],
-      cautious:['「今天有彈欸，但先看兩天再說。」','「是不是跌太多開始反彈？我還不敢追。」','「有點想接，但又怕只是逃命波。」','「先觀望，至少不像前幾天那麼恐怖了。」'],
+      panic:['「今天這根也太誇張，真的有人敢接嗎？」','「每次以為夠便宜，隔天又更便宜。」','「我現在只想知道到底還要跌多久。」'],
+      cautious:['「今天有彈欸，但先看兩天再說。」','「是不是跌太多開始反彈？我還不敢追。」','「有點想接，但又怕只是逃命波。」'],
       relief:['「終於看到一根像樣的反彈，先喘口氣。」','「今天漲成這樣，底是不是差不多了？」','「市場突然又有希望了，但我還是不敢全信。」'],
-      fomo:['「再不上車是不是就真的追不到了？」','「前幾週賣掉的人現在應該很痛苦。」','「怎麼一轉眼就彈這麼多，我是不是太悲觀？」','「大家又開始曬獲利，我有點坐不住了。」'],
+      fomo:['「再不上車是不是就真的追不到了？」','「怎麼一轉眼就彈這麼多，我是不是太悲觀？」','「大家又開始曬獲利，我有點坐不住了。」'],
       fatigue:['「跌久了反而沒感覺，只是不想再看帳戶。」','「每次反彈都失敗，現在連期待都懶了。」','「不是恐慌，是累。到底還要磨多久？」'],
       mixed:['「一下喊崩盤、一下喊牛市回歸，市場真的很吵。」','「每個人都在猜底，但其實沒人知道答案。」','「先活著比較重要，預測底部晚點再說。」']
     };
-    let commentPool=state.drawdown<=-25?marketComments.crisis:rebound>=.10?marketComments.rebound:marketComments.normal;
+    let commentPool=deep?marketComments.crisis:rebound>=.10?marketComments.rebound:marketComments.normal;
     out.push({source:'市場評論',text:pick(rng,commentPool)});
     let socialPool=social.mixed;
     if(state.weekReturn<=-4) socialPool=social.panic;
     else if(state.weekReturn>=4 && state.drawdown<=-20) socialPool=rebound>=.15?social.fomo:social.relief;
     else if(state.weekReturn>=1.5 && state.drawdown<=-10) socialPool=social.cautious;
-    else if(state.drawdown<=-30 && state.weekReturn>-1) socialPool=state.bearStartWeek!=null && state.week-state.bearStartWeek>12?social.fatigue:social.cautious;
+    else if(state.drawdown<=-30 && state.weekReturn>-1) socialPool=state.bearStartWeek!=null && state.week-state.bearStartWeek>7?social.fatigue:social.cautious;
     else if(rebound>=.18) socialPool=social.fomo;
     out.push({source:'社群聲音',text:pick(rng,socialPool)});
     return out;
@@ -515,12 +508,12 @@
     const chance=Math.min(.45,baseChance*(state.drawdown<=-40?1.7:state.drawdown<=-32?1.35:1));
     const rng=mulberry32(hashSeed(`${state.seed}-income-${state.week}`)); if(rng()>chance)return;
     const pools=[
-      {title:'本業收入下修',multiplier:.85,duration:13,text:'景氣與需求轉弱，你接下來一段時間可自由配置的本業現金流下降。'},
-      {title:'工時／營收縮減',multiplier:.70,duration:17,text:'市場壓力開始傳導到實體經濟，你的本業可配置現金流明顯縮水。'},
-      {title:'短期收入急縮',multiplier:.45,duration:9,text:'景氣衝擊突然擴大，你的本業收入短期大幅下降。'}
+      {title:'本業收入下修',multiplier:.85,duration:7,text:'景氣與需求轉弱，你接下來一段時間可自由配置的本業現金流下降。'},
+      {title:'工時／營收縮減',multiplier:.70,duration:9,text:'市場壓力開始傳導到實體經濟，你的本業可配置現金流明顯縮水。'},
+      {title:'短期收入急縮',multiplier:.45,duration:5,text:'景氣衝擊突然擴大，你的本業收入短期大幅下降。'}
     ];
     let pool=pools;if(state.scenarioId==='false_alarm')pool=[pools[0]];if(state.scenarioId==='deep_crisis')pool=[pools[1],pools[2],pools[0]];
-    const e={...pick(rng,pool)}; e.startWeek=state.week; e.endWeek=Math.min(52,state.week+e.duration-1); e.oldAmount=state.baseMonthlyCashFlow; e.newAmount=Math.round(state.baseMonthlyCashFlow*e.multiplier/1000)*1000;
+    const e={...pick(rng,pool)}; e.startWeek=state.week; e.endWeek=Math.min(state.endWeek,state.week+e.duration-1); e.oldAmount=state.baseMonthlyCashFlow; e.newAmount=Math.round(state.baseMonthlyCashFlow*e.multiplier/1000)*1000;
     state.activeIncomeShock=e; state.pendingIncome=e; state.currentMonthlyCashFlow=e.newAmount; state.monthlyCashFlow=e.newAmount; state.incomeShockCount++;
     state.logs.push({week:state.week,type:'income',major:true,text:`${e.title}：每月可配置現金流由 ${money(e.oldAmount)} 降至 ${money(e.newAmount)}，預計約 ${e.duration} 週。`});
   }
@@ -542,31 +535,33 @@
   }
 
   function renderGame(){
-    $('weekLabel').textContent=`第 ${state.week} / 52 週｜約第 ${(state.week/4.345).toFixed(1)} 個月`;
-    const age=simulatedAge(); $('ageLabel').textContent=`${age.toFixed(1)} 歲｜距退休 ${Math.max(0,state.retireAge-age).toFixed(1)} 年`;
-    const total=totalAssets(), sw=stockWeight(); $('totalAssetCompact').textContent=money(total); $('stockWeightCompact').textContent=`${(sw*100).toFixed(1)}%`;
+    $('weekLabel').textContent=`第 ${state.week} / 26 週｜約第 ${(state.week/4.345).toFixed(1)} 個月`;
+    const total=totalAssets(), sw=stockWeight(), inv=investmentAssets(), bw=inv>0?state.bondValue/inv:0;
+    $('totalAssetCompact').textContent=compactMoney(total); $('totalAssetCompact').title=money(total);
+    const bondDD=state.bondAthLevel>0?(state.bondLevel/state.bondAthLevel-1)*100:0;
     const rows=[
-      {k:'股票',v:compactMoney(state.stockValue),a:`本週 ${pct(state.weekReturn)}`,ac:state.weekReturn<0?'negative':'positive',b:`距高點 ${pct(state.drawdown)}`,bc:state.drawdown<0?'negative':'positive'},
-      {k:'債券',v:compactMoney(state.bondValue),a:`本週 ${pct(state.bondWeekReturn)}`,ac:state.bondWeekReturn<0?'negative':'positive',b:`本局 ${pct(state.bondTotalReturn)}`,bc:state.bondTotalReturn<0?'negative':'positive'}
+      {k:'股票',weight:`水位 ${(sw*100).toFixed(1)}%`,v:compactMoney(state.stockValue),a:`本週 ${pct(state.weekReturn)}`,ac:state.weekReturn<0?'negative':'positive',b:`距高點 ${pct(state.drawdown)}`,bc:state.drawdown<0?'negative':'positive'},
+      {k:'債券',weight:`水位 ${(bw*100).toFixed(1)}%`,v:compactMoney(state.bondValue),a:`本週 ${pct(state.bondWeekReturn)}`,ac:state.bondWeekReturn<0?'negative':'positive',b:`距高點 ${pct(bondDD)}`,bc:bondDD<0?'negative':'positive'}
     ];
-    $('assetRows').innerHTML=rows.map(r=>`<div class="asset-mini"><div class="k">${r.k}</div><div class="v" title="${r.k==='股票'?money(state.stockValue):money(state.bondValue)}">${r.v}</div><div class="perf"><span class="${r.ac}">${r.a}</span><span class="${r.bc}">${r.b}</span></div></div>`).join('');
+    $('assetRows').innerHTML=rows.map(r=>`<div class="asset-mini"><div class="asset-head"><div class="k">${r.k}</div><div class="weight">${r.weight}</div></div><div class="v" title="${r.k==='股票'?money(state.stockValue):money(state.bondValue)}">${r.v}</div><div class="perf"><span class="${r.ac}">${r.a}</span><span class="${r.bc}">${r.b}</span></div></div>`).join('');
     $('investCashCompact').textContent=compactMoney(state.investCash); $('investCashCompact').title=money(state.investCash); $('reserveCompact').textContent=compactMoney(state.reserve); $('reserveCompact').title=money(state.reserve); $('monthlyIncomeCompact').textContent=compactMoney(state.currentMonthlyCashFlow);
     const pl=equivalentInvestmentPL(); const pressure=[
-      ['本週投資波動',`${state.weekMarketImpact>=0?'+':''}${compactMoney(state.weekMarketImpact)}`,state.weekMarketImpact<0?'negative':'positive'],
-      ['投資最大回撤',pct(state.maxPlayerDrawdown),state.maxPlayerDrawdown<0?'negative':'positive'],
-      ['投資淨損益',`${pl>=0?'+':''}${compactMoney(pl)}`,pl<0?'negative':'positive']
+      ['投資淨損益',`${pl>=0?'+':''}${compactMoney(pl)}`,pl<0?'negative':'positive','primary-loss'],
+      ['投資最大回撤',pct(state.maxPlayerDrawdown),state.maxPlayerDrawdown<0?'negative':'positive',''],
+      ['本週投資波動',`${state.weekMarketImpact>=0?'+':''}${compactMoney(state.weekMarketImpact)}`,state.weekMarketImpact<0?'negative':'positive','']
     ];
-    $('pressureRow').innerHTML=pressure.map(([k,v,c])=>`<div class="pressure-mini"><div class="k">${k}</div><div class="v ${c}">${v}</div></div>`).join('');
-    const arc=getArc(state.week), voices=buildNarrativeVoices(); $('news').innerHTML=`<div class="small muted" style="margin-bottom:2px">事件階段：${arc[2]}</div>`+voices.map(v=>`<div class="news-item"><span class="voice-label">${v.source}</span>${v.text}</div>`).join('');
+    $('pressureRow').innerHTML=pressure.map(([k,v,c,extra])=>`<div class="pressure-mini ${extra}"><div class="k">${k}</div><div class="v ${c}">${v}</div></div>`).join('');
+    const arc=getArc(state.week), voices=buildNarrativeVoices(); $('arcTag').textContent=arc[2]; $('news').innerHTML=voices.map(v=>`<div class="news-item"><span class="voice-label">${v.source}</span>${v.text}</div>`).join('');
     $('contextWeekTag').textContent=`第 ${state.week} 週`; const milestones=state.currentMilestones||[];
     $('milestoneBox').innerHTML=milestones.map(m=>`<div class="milestone"><div class="tag">重大節點</div><div class="title">${m.title}</div><div class="text">${m.text}</div></div>`).join('');
-    const insights=getContextInsights(); $('contextInsights').innerHTML=insights.length?insights.map(x=>`<div class="context-line"><div class="context-title ${x.tone||''}">${x.title}</div><div class="small muted">${x.text}</div></div>`).join(''):`<div class="context-neutral">本週沒有新的重大壓力，但市場方向仍未知。維持配置也是一個決策。</div>`;
+    const insights=getContextInsights(); $('contextInsights').innerHTML=insights.map(x=>`<div class="context-line"><div class="context-title ${x.tone||''}">${x.title}</div><div class="small muted">${x.text}</div></div>`).join('');
     renderIncome(); renderMonthly(); renderLife(); updateTradeUI();
   }
 
   function renderIncome(){
     const c=$('incomeCard'); if(!state.pendingIncome){c.classList.add('hidden');return} const e=state.pendingIncome; c.classList.remove('hidden');
-    c.innerHTML=`<h2>本業衝擊｜${e.title}</h2><p>${e.text}</p><div class="income-delta negative">${money(e.oldAmount)} → ${money(e.newAmount)} / 月</div><div class="small muted">預計持續約 ${e.duration} 週。市場下跌現在不只影響投資資產，也開始影響你補充現金的能力。</div><div class="actions"><button id="ackIncomeBtn">知道了</button></div>`;
+    const cut=e.oldAmount>0?(e.oldAmount-e.newAmount)/e.oldAmount*100:0;
+    c.innerHTML=`<h2>本業衝擊｜${e.title}</h2><p>${e.text}</p><div class="income-delta negative">${money(e.oldAmount)} → ${money(e.newAmount)} / 月</div><div class="small muted">實際減少 ${cut.toFixed(0)}%｜預計約 ${e.duration} 週。市場壓力已開始影響你補充現金的能力。</div><div class="actions"><button id="ackIncomeBtn">知道了</button></div>`;
     $('ackIncomeBtn').onclick=()=>{state.pendingIncome=null;save();renderGame();};
   }
 
@@ -575,7 +570,7 @@
     if(state.pendingMonthly && state.pendingMonthly.amount>0){c.classList.remove('hidden');$('monthlyAmount').textContent=money(state.pendingMonthly.amount);$('monthlyToCash').value=state.pendingMonthly.amount;$('monthlyToReserve').value='';updateMonthlyCheck();}
     else c.classList.add('hidden');
   }
-  function updateMonthlyCheck(){if(!state?.pendingMonthly)return;const a=+$('monthlyToCash').value||0,b=+$('monthlyToReserve').value||0,d=state.pendingMonthly.amount-a-b;$('monthlyCheck').textContent=d===0?'分配完成。':`還差 ${money(Math.abs(d))}${d<0?'（超額）':''}`;$('monthlyCheck').className='small '+(d===0?'positive':'warning');}
+  function updateMonthlyCheck(){if(!state?.pendingMonthly)return;const a=+$('monthlyToCash').value||0,b=+$('monthlyToReserve').value||0,d=state.pendingMonthly.amount-a-b;$('monthlyCheck').textContent=d===0?'':`還差 ${money(Math.abs(d))}${d<0?'（超額）':''}`;$('monthlyCheck').className='small '+(d===0?'muted':'warning');}
   function confirmMonthly(){
     const a=+$('monthlyToCash').value||0,b=+$('monthlyToReserve').value||0,amt=state.pendingMonthly?.amount||0;
     if(a<0||b<0||Math.abs(a+b-amt)>0.5){alert('兩個欄位合計必須等於本月可配置現金流。');return}
@@ -672,9 +667,30 @@
 
   function marketMaxDrawdown(){return Math.min(...state.marketLevels.map((x,i)=>{const max=Math.max(...state.marketLevels.slice(0,i+1));return (x/max-1)*100}));}
 
+  function generatePlayerTitle(){
+    const decisions=decisionLogs(), crashBuys=decisions.filter(d=>d.action==='buy'&&d.asset==='stock'&&d.drawdown<=-20), crashSells=decisions.filter(d=>d.action==='sell'&&d.asset==='stock'&&d.drawdown<=-20);
+    const candidates=[]; const add=(score,title,tag)=>candidates.push({score,title,tag});
+    const initialInv=Math.max(1,state.initial.investment||1), minCashRatio=state.assetHistory.reduce((m,x)=>m,1);
+    const buyAfterRebound=decisions.filter(d=>d.action==='buy'&&d.asset==='stock'&&d.drawdown>-15&&d.week>Math.max(1,(state.lowestMarketWeek||0))).length;
+    if(crashBuys.length) add(80+Math.min(15,crashBuys.length*5),'深跌加碼者','越跌越敢買');
+    if(crashSells.length) add(86+Math.min(10,crashSells.length*4),'低點退場者','壓力下主動降曝險');
+    if(state.reserveUsedForInvesting>0) add(92,'預備金破戒者','安全墊也上場');
+    if(state.minInvestCash<=initialInv*.05 && state.totalBought>initialInv*.10) add(89,'彈藥耗盡者','前段火力開太快');
+    if(state.maxPlayerDrawdown<=-25 && state.sellCount===0) add(84,'鋼鐵持有者','深跌仍未賣出');
+    if(state.totalBought===0 && state.initial.cash>=initialInv*.20) add(72,'現金守門員','始終保留彈藥');
+    if(buyAfterRebound>0) add(70+Math.min(10,buyAfterRebound*3),'反彈追逐者','價格回升後提高曝險');
+    if(!candidates.length) add(50,'配置守成者','大多數時間維持原計畫');
+    candidates.sort((a,b)=>b.score-a.score); const main=candidates[0];
+    const tags=[]; for(const c of candidates.slice(1)){if(!tags.includes(c.tag))tags.push(c.tag);if(tags.length>=2)break}
+    if(state.incomeShockCount>0 && tags.length<2) tags.push('收入也遭遇壓力');
+    if(state.maxPlayerDrawdown<=-30 && tags.length<2) tags.push('扛過深度回撤');
+    return {title:main.title,tags:[main.tag,...tags].slice(0,3)};
+  }
+
   function renderReport(){
-    showView('report'); const s=getScenario(),c=evaluateConsistency(),pl=equivalentInvestmentPL(),plPct=(state.portfolioIndex||100)-100;
+    showView('report'); const s=getScenario(),c=evaluateConsistency(),pl=equivalentInvestmentPL(),plPct=(state.portfolioIndex||100)-100,title=generatePlayerTitle();
     $('scenarioReveal').innerHTML=`<strong>${s.name}</strong>｜${s.summary}<div class="small-note">Seed：${state.seed}</div>`;
+    $('playerTitle').innerHTML=`<div class="eyebrow">本局稱號</div><div class="main-title">${title.title}</div><div class="title-tags">${title.tags.map(x=>`<span class="title-tag">${x}</span>`).join('')}</div>`;
     const stats=[
       ['市場最大跌幅',pct(marketMaxDrawdown()),'negative'],['投資最大回撤',pct(state.maxPlayerDrawdown),'negative'],
       ['投資淨表現',pct(plPct),plPct<0?'negative':'positive'],['等值投資損益',money(pl),pl<0?'negative':'positive'],
@@ -706,20 +722,47 @@
   function renderTimeline(){const logs=state.logs.filter(x=>x.major||x.type==='decision').filter(x=>x.type!=='decision'||x.action!=='hold');$('timeline').innerHTML=logs.length?logs.map(x=>`<div class="timeline-item ${x.major?'major':''}"><div class="small muted">Week ${x.week}${x.drawdown!==undefined?`｜市場 ${pct(x.drawdown)}`:''}</div>${x.text}</div>`).join(''):'<p class="muted">本局沒有重大主動交易紀錄。</p>';}
 
   function buildDownloadReportHTML(){
-    const s=getScenario(),c=evaluateConsistency(),pl=equivalentInvestmentPL(),plPct=(state.portfolioIndex||100)-100,highlights=getReportHighlights(c);
+    const s=getScenario(),c=evaluateConsistency(),pl=equivalentInvestmentPL(),plPct=(state.portfolioIndex||100)-100,highlights=getReportHighlights(c),title=generatePlayerTitle();
     const timeline=state.logs.filter(x=>x.major||x.type==='decision').map(x=>`<li><strong>Week ${x.week}</strong>｜${x.text}</li>`).join('');
-    return `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>投資壓力測試報告｜Seed ${state.seed}</title><style>body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;max-width:820px;margin:0 auto;padding:28px;color:#172033;line-height:1.6}h1{margin-bottom:4px}.meta{color:#64748b}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.m{border:1px solid #d9e0ea;border-radius:10px;padding:12px}.k{font-size:12px;color:#64748b}.v{font-size:22px;font-weight:800}.section{margin-top:24px}li{margin:7px 0}@media(max-width:520px){.grid{grid-template-columns:1fr}}</style></head><body><h1>投資壓力測試報告</h1><div class="meta">MVP 0.4｜一般模式 52 週｜Seed ${state.seed}</div><h2>${s.name}</h2><p>${s.summary}</p><div class="grid"><div class="m"><div class="k">市場最大跌幅</div><div class="v">${pct(marketMaxDrawdown())}</div></div><div class="m"><div class="k">投資最大回撤</div><div class="v">${pct(state.maxPlayerDrawdown)}</div></div><div class="m"><div class="k">投資淨表現</div><div class="v">${pct(plPct)}</div></div><div class="m"><div class="k">等值投資損益</div><div class="v">${money(pl)}</div></div><div class="m"><div class="k">最低投資現金</div><div class="v">${money(state.minInvestCash)}</div></div><div class="m"><div class="k">策略一致性</div><div class="v">${c.assessable?c.score+'/100':'資料不足'}</div></div></div><div class="section"><h2>本局重點</h2><ul>${highlights.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="section"><h2>重大決策與事件</h2><ul>${timeline||'<li>無重大主動交易紀錄。</li>'}</ul></div><div class="section"><h2>客觀紀錄</h2><p>初始總資產：${money(state.initial.total)}<br>最終總資產：${money(totalAssets())}<br>期間新增本業現金：${money(state.totalCashflowAdded)}<br>總買進：${money(state.totalBought)}（${state.buyCount} 次）<br>總賣出：${money(state.totalSold)}（${state.sellCount} 次）<br>最低預備金：${money(state.minReserve)}<br>收入衝擊：${state.incomeShockCount?'有':'無'}</p></div><p class="meta">此報告為互動模擬與教育用途，不構成個人化投資建議。</p></body></html>`;
+    return `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>投資壓力測試報告｜Seed ${state.seed}</title><style>body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;max-width:820px;margin:0 auto;padding:28px;color:#172033;line-height:1.6}h1{margin-bottom:4px}.meta{color:#64748b}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.m{border:1px solid #d9e0ea;border-radius:10px;padding:12px}.k{font-size:12px;color:#64748b}.v{font-size:22px;font-weight:800}.section{margin-top:24px}li{margin:7px 0}@media(max-width:520px){.grid{grid-template-columns:1fr}}</style></head><body><h1>投資壓力測試報告</h1><div class="meta">MVP 0.5｜一般模式 26 週｜Seed ${state.seed}</div><h2>${s.name}</h2><p>${s.summary}</p><div class="section"><div class="k">本局稱號</div><div class="v">${title.title}</div><p>${title.tags.join("・")}</p></div><div class="grid"><div class="m"><div class="k">市場最大跌幅</div><div class="v">${pct(marketMaxDrawdown())}</div></div><div class="m"><div class="k">投資最大回撤</div><div class="v">${pct(state.maxPlayerDrawdown)}</div></div><div class="m"><div class="k">投資淨表現</div><div class="v">${pct(plPct)}</div></div><div class="m"><div class="k">等值投資損益</div><div class="v">${money(pl)}</div></div><div class="m"><div class="k">最低投資現金</div><div class="v">${money(state.minInvestCash)}</div></div><div class="m"><div class="k">策略一致性</div><div class="v">${c.assessable?c.score+'/100':'資料不足'}</div></div></div><div class="section"><h2>本局重點</h2><ul>${highlights.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="section"><h2>重大決策與事件</h2><ul>${timeline||'<li>無重大主動交易紀錄。</li>'}</ul></div><div class="section"><h2>客觀紀錄</h2><p>初始總資產：${money(state.initial.total)}<br>最終總資產：${money(totalAssets())}<br>期間新增本業現金：${money(state.totalCashflowAdded)}<br>總買進：${money(state.totalBought)}（${state.buyCount} 次）<br>總賣出：${money(state.totalSold)}（${state.sellCount} 次）<br>最低預備金：${money(state.minReserve)}<br>收入衝擊：${state.incomeShockCount?'有':'無'}</p></div><p class="meta">此報告為互動模擬與教育用途，不構成個人化投資建議。</p></body></html>`;
   }
-  function downloadReport(){const blob=new Blob([buildDownloadReportHTML()],{type:'text/html;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`投資壓力測試報告_MVP0.4_Seed${state.seed}.html`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200);}
+  function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight,maxLines=3){
+    const chars=[...String(text)]; let line='', lines=[];
+    for(const ch of chars){const test=line+ch;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=ch;if(lines.length>=maxLines-1)break}else line=test}
+    if(line&&lines.length<maxLines)lines.push(line); lines.forEach((l,i)=>ctx.fillText(l,x,y+i*lineHeight)); return y+lines.length*lineHeight;
+  }
+  function buildShareCanvas(){
+    const c=document.createElement('canvas'); c.width=1080;c.height=1350;const ctx=c.getContext('2d');const s=getScenario(),cons=evaluateConsistency(),pl=equivalentInvestmentPL(),plPct=(state.portfolioIndex||100)-100,title=generatePlayerTitle();
+    ctx.fillStyle='#0b0f14';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#121923';ctx.strokeStyle='#334155';ctx.lineWidth=3;roundRect(ctx,54,60,972,1230,34,true,true);
+    ctx.fillStyle='#94a3b8';ctx.font='700 30px sans-serif';ctx.fillText('投資壓力模擬器｜MVP 0.5',90,115);
+    ctx.fillStyle='#eef3f8';ctx.font='900 54px sans-serif';ctx.fillText('我的投資壓力測試結果',90,190);
+    ctx.fillStyle='#fcd34d';ctx.font='800 25px sans-serif';ctx.fillText('本局稱號',90,250);ctx.fillStyle='#ffffff';ctx.font='900 62px sans-serif';ctx.fillText(title.title,90,320);
+    ctx.fillStyle='#fde68a';ctx.font='700 24px sans-serif';ctx.fillText(title.tags.join(' ・ '),90,365);
+    ctx.fillStyle='#cbd5e1';ctx.font='800 30px sans-serif';ctx.fillText(s.name,90,430);ctx.fillStyle='#94a3b8';ctx.font='500 24px sans-serif';wrapCanvasText(ctx,s.summary,90,470,900,36,3);
+    const metrics=[['市場最大跌幅',pct(marketMaxDrawdown())],['投資最大回撤',pct(state.maxPlayerDrawdown)],['投資淨損益',money(pl)],['投資淨表現',pct(plPct)],['最低投資現金',money(state.minInvestCash)],['策略一致性',cons.assessable?cons.score+'/100':'資料不足']];
+    let y=600;for(let i=0;i<metrics.length;i++){const col=i%2,row=Math.floor(i/2),x=90+col*455,yy=y+row*150;ctx.fillStyle='#0e1520';roundRect(ctx,x,yy,420,120,18,true,false);ctx.fillStyle='#94a3b8';ctx.font='600 22px sans-serif';ctx.fillText(metrics[i][0],x+22,yy+35);ctx.fillStyle=(String(metrics[i][1]).startsWith('-')||String(metrics[i][1]).includes(' -'))?'#4ade80':'#eef3f8';ctx.font='900 36px sans-serif';ctx.fillText(metrics[i][1],x+22,yy+83)}
+    ctx.fillStyle='#64748b';ctx.font='500 21px sans-serif';ctx.fillText(`一般模式｜26 週｜Seed ${state.seed}`,90,1165);ctx.fillText('互動模擬與教育用途，不構成個人化投資建議。',90,1210);return c;
+  }
+  function roundRect(ctx,x,y,w,h,r,fill,stroke){ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill)ctx.fill();if(stroke)ctx.stroke();}
+  function dataUrlToBlob(dataUrl){const [head,data]=dataUrl.split(',');const mime=(head.match(/data:([^;]+)/)||[])[1]||'image/png';const bytes=atob(data);const arr=new Uint8Array(bytes.length);for(let i=0;i<bytes.length;i++)arr[i]=bytes.charCodeAt(i);return new Blob([arr],{type:mime});}
+  async function shareSummaryImage(){
+    const status=$('shareStatus');status.textContent='正在產生分享圖片…';
+    try{const canvas=buildShareCanvas(),dataUrl=canvas.toDataURL('image/png',0.96),blob=dataUrlToBlob(dataUrl),file=new File([blob],`投資壓力測試_MVP0.5_Seed${state.seed}.png`,{type:'image/png'});
+      if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'我的投資壓力測試結果'});status.textContent='已開啟分享選單，可選「儲存影像」或分享給其他 App。';}
+      else{const a=document.createElement('a');a.href=dataUrl;a.download=file.name;document.body.appendChild(a);a.click();a.remove();status.textContent='此瀏覽器不支援直接分享，已改為下載 PNG 圖片。';}
+    }catch(err){if(err?.name==='AbortError'){status.textContent='已取消分享。';return}status.textContent='分享圖片產生失敗，請改用完整報告 HTML。';console.error(err)}
+  }
+
+  function downloadReport(){const blob=new Blob([buildDownloadReportHTML()],{type:'text/html;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`投資壓力測試報告_MVP0.5_Seed${state.seed}.html`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200);}
 
   $('newGameBtn').onclick=()=>showView('setup'); $('backLandingBtn').onclick=()=>showView('landing'); $('startGameBtn').onclick=createGame; $('resetBtn').onclick=()=>{if(confirm('確定要清除本機遊戲資料？'))clearSave()};
   $('resumeBtn').onclick=()=>{state=load(); if(!state)return; if(state.finished)renderReport();else{showView('game');renderGame();}};
-  $('tradeAction').onchange=updateTradeUI; $('tradeAsset').onchange=updateTradeUI; $('commitTurnBtn').onclick=commitTurn;
+  $('tradeAction').onchange=updateTradeUI; $('tradeAsset').onchange=updateTradeUI; $('commitTurnBtn').onclick=()=>commitTurn(false);
   $('quickNextBtn').onclick=()=>commitTurn(true);
   $('tradeToggleBtn').onclick=()=>{$('tradeCard').classList.toggle('hidden'); if(!$('tradeCard').classList.contains('hidden')){$('tradeAction').value='buy';$('tradeAmount').value='';updateTradeUI();$('tradeCard').scrollIntoView({behavior:'smooth',block:'start'});}};
   $('tradeCloseBtn').onclick=()=>{$('tradeCard').classList.add('hidden');window.scrollTo({top:0,behavior:'smooth'});};
   $('monthlyToCash').oninput=updateMonthlyCheck; $('monthlyToReserve').oninput=updateMonthlyCheck; $('confirmMonthlyBtn').onclick=confirmMonthly;
-  $('downloadReportBtn').onclick=downloadReport; $('replayBtn').onclick=()=>{localStorage.removeItem(STORAGE_KEY);state=null;currentTurnPrepared=false;showView('setup')}; $('clearAfterBtn').onclick=clearSave;
+  $('shareImageBtn').onclick=shareSummaryImage; $('downloadReportBtn').onclick=downloadReport; $('replayBtn').onclick=()=>{localStorage.removeItem(STORAGE_KEY);state=null;currentTurnPrepared=false;showView('setup')}; $('clearAfterBtn').onclick=clearSave;
 
   const saved=load(); if(saved){$('resumeBtn').classList.remove('hidden');$('resetBtn').classList.remove('hidden');$('saveBadge').textContent=saved.finished?'上局已完成':'有未完成模擬';}
 })();
