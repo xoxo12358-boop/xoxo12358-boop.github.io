@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>投資壓力模擬器｜MVP 0.7.5</title>
+  <title>投資壓力模擬器｜MVP 0.7.5.1</title>
   <style>
     :root {
       --bg:#0b0f14; --panel:#121923; --panel2:#182231; --text:#eef3f8; --muted:#94a3b8;
@@ -112,20 +112,20 @@
     .account-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}.account-tab{background:#152235;color:#cbd5e1;border:1px solid #334155}.account-tab.active{background:#dbeafe;color:#0b1220;border-color:#dbeafe}.account-panel.hidden{display:none!important}.account-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.account-box{background:#0e1520;border:1px solid #2a3a50;border-radius:13px;padding:12px;min-width:0}.account-box .k{font-size:12px;color:#94a3b8}.account-box .v{font-size:clamp(22px,5.3vw,30px);font-weight:950;letter-spacing:-.025em;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.account-box .sub{font-size:11px;color:#64748b;margin-top:4px}.account-box.emphasis{border-color:#41546e;background:#101925}.account-box.emphasis .v{font-size:clamp(25px,6vw,34px)}.bank-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.bank-grid .account-box.total{grid-column:1/-1}.market-risk-strip{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}.market-risk-item{background:#0c131d;border:1px solid #263449;border-radius:10px;padding:8px 9px}.market-risk-item .k{font-size:10px;color:#94a3b8}.market-risk-item .v{font-size:15px;font-weight:900;margin-top:2px}
     @media(max-width:440px){.account-grid,.bank-grid{grid-template-columns:1fr 1fr}.account-box{padding:10px}.account-box .v{font-size:21px}.account-box.emphasis .v{font-size:24px}.market-risk-strip{grid-template-columns:1fr 1fr}}
 
-    /* MVP 0.7.5 cover-only refinement */
-    .landing-game-title{font-size:clamp(36px,8vw,62px);font-weight:950;letter-spacing:.01em;line-height:1.08;margin:2px 0 26px;color:#f8fafc;text-align:center;white-space:nowrap}
-    #landing .hero h1{font-size:clamp(28px,6.2vw,45px);line-height:1.08;margin:6px 0 18px}
+    /* MVP 0.7.5.1 cover-only refinement */
+    .landing-game-title{font-size:clamp(36px,8vw,62px);font-weight:950;letter-spacing:.01em;line-height:1.08;margin:2px 0 38px;color:#f8fafc;text-align:center;white-space:nowrap}
+    #landing .hero h1{font-size:clamp(28px,6.2vw,45px);line-height:1.08;margin:6px 0 32px}
     .hero-line-nowrap{white-space:nowrap}
     .landing-core-note{font-size:17px;line-height:1.55}
     .author-credit{font-size:12px;color:#64748b;margin-top:46px;text-align:center}
     .author-credit a{color:#fcd34d;text-decoration:underline;text-underline-offset:3px;font-weight:850}
-    @media(max-width:440px){.landing-game-title{font-size:clamp(30px,7.8vw,35px)}#landing .hero h1{font-size:clamp(25px,6.6vw,29px)}.landing-core-note{font-size:15px}.author-credit{margin-top:44px}}
+    @media(max-width:440px){.landing-game-title{font-size:clamp(30px,7.8vw,35px);margin-bottom:34px}#landing .hero h1{font-size:clamp(25px,6.6vw,29px);margin-bottom:28px}.landing-core-note{font-size:15px}.author-credit{margin-top:44px}}
 </style>
 </head>
 <body class="landing-view">
 <div class="wrap">
   <div class="topbar">
-    <div><div class="brand-line"><div class="brand">投資壓力模擬器</div><span class="top-week hidden" id="topWeekLabel">第 1 / 26 週</span></div><div class="small muted">MVP 0.7.5｜決策壓力版</div></div>
+    <div><div class="brand-line"><div class="brand">投資壓力模擬器</div><span class="top-week hidden" id="topWeekLabel">第 1 / 26 週</span></div><div class="small muted">MVP 0.7.5.1｜決策壓力版</div></div>
     <div class="inline"><span class="badge" id="saveBadge">未開始</span><button class="secondary hidden" id="resetBtn">清除本機資料</button></div>
   </div>
 
@@ -133,8 +133,8 @@
     <div class="card hero">
       <div class="landing-game-title">📈投資壓力模擬器📉</div>
       <h1><span class="hero-line-nowrap">市場不照你的劇本走時</span><br>你能抗住多大波動？</h1>
-      <div class="notice landing-core-note"><strong>輸入真實資產。</strong><br><strong>此遊戲不是報酬率高為贏。</strong></div>
-      <div class="notice">請不要用上帝視角玩，這不是預測市場的遊戲。真正要測的是你的資金續航與決策一致性。</div>
+      <div class="notice landing-core-note"><strong>💰輸入真實資產。</strong><br><strong>❌此遊戲不是報酬率高為贏。</strong></div>
+      <div class="notice">👁️請不要用上帝視角玩，這不是預測市場的遊戲。<br>⭕️真正要測的是你的資金續航與決策一致性。</div>
       <div class="actions"><button id="newGameBtn">建立新模擬</button><button class="secondary hidden" id="resumeBtn">繼續上次模擬</button></div>
       <div class="author-credit">製作｜<a href="https://www.threads.com/@aura_ouob?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer">小明的財務生態系</a></div>
     </div>
@@ -303,7 +303,7 @@
     </div>
   </div>
 
-  <div class="footer-note">MVP 0.7.5｜僅為互動模擬與教育用途，不構成任何個人化投資建議。</div>
+  <div class="footer-note">MVP 0.7.5.1｜僅為互動模擬與教育用途，不構成任何個人化投資建議。</div>
 </div>
 <script>
 (() => {
@@ -1339,7 +1339,7 @@
     .account-mini-metric{font-size:9px;color:#94a3b8;font-weight:800;text-align:right;white-space:nowrap}
     .account-inline-link{appearance:none;border:0;background:transparent!important;color:#60a5fa!important;text-decoration:underline;text-underline-offset:2px;padding:0!important;border-radius:0!important;font-size:9px!important;font-weight:850!important;min-height:0!important;white-space:nowrap}
     @media(max-width:440px){.landing-game-title{font-size:30px}.landing-version{margin-bottom:18px}.hero-line-nowrap{font-size:clamp(25px,7.4vw,33px)}.account-mini-metric,.account-inline-link{font-size:8px!important}}
-</style></head><body><h1>投資壓力測試報告</h1><div class="meta">MVP 0.7.5｜一般模式 26 週｜Seed ${state.seed}</div><h2>${s.name}</h2><p>${s.summary}</p><div class="section"><div class="k">本局稱號</div><div class="v">${title.title}</div><p>${title.tags.join("・")}</p></div><div class="grid"><div class="m"><div class="k">市場最大跌幅</div><div class="v">${pct(marketMaxDrawdown())}</div></div><div class="m"><div class="k">投資最大回撤</div><div class="v">${pct(state.maxPlayerDrawdown)}</div></div><div class="m"><div class="k">投資淨表現</div><div class="v">${pct(plPct)}</div></div><div class="m"><div class="k">等值投資損益</div><div class="v">${money(pl)}</div></div><div class="m"><div class="k">最低投資現金</div><div class="v">${money(state.minInvestCash)}</div></div><div class="m"><div class="k">目前未實現損益</div><div class="v">${money(unrealizedPL())}</div></div></div><div class="section"><h2>本局重點</h2><ul>${highlights.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="section"><h2>本局行為摘要</h2><ul>${getBehaviorSummary().map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="section"><h2>重大決策與事件</h2><ul>${timeline||'<li>無重大主動交易紀錄。</li>'}</ul></div><div class="section"><h2>客觀紀錄</h2><p>初始總資產：${money(state.initial.total)}<br>最終總資產：${money(totalAssets())}<br>期間新增本業現金：${money(state.totalCashflowAdded)}<br>總買進：${money(state.totalBought)}（${state.buyCount} 次）<br>總賣出：${money(state.totalSold)}（${state.sellCount} 次）<br>最低預備金：${money(state.minReserve)}<br>收入衝擊：${state.incomeShockCount?'有':'無'}</p></div><p class="meta">此報告為互動模擬與教育用途，不構成個人化投資建議。</p></body></html>`;
+</style></head><body><h1>投資壓力測試報告</h1><div class="meta">MVP 0.7.5.1｜一般模式 26 週｜Seed ${state.seed}</div><h2>${s.name}</h2><p>${s.summary}</p><div class="section"><div class="k">本局稱號</div><div class="v">${title.title}</div><p>${title.tags.join("・")}</p></div><div class="grid"><div class="m"><div class="k">市場最大跌幅</div><div class="v">${pct(marketMaxDrawdown())}</div></div><div class="m"><div class="k">投資最大回撤</div><div class="v">${pct(state.maxPlayerDrawdown)}</div></div><div class="m"><div class="k">投資淨表現</div><div class="v">${pct(plPct)}</div></div><div class="m"><div class="k">等值投資損益</div><div class="v">${money(pl)}</div></div><div class="m"><div class="k">最低投資現金</div><div class="v">${money(state.minInvestCash)}</div></div><div class="m"><div class="k">目前未實現損益</div><div class="v">${money(unrealizedPL())}</div></div></div><div class="section"><h2>本局重點</h2><ul>${highlights.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="section"><h2>本局行為摘要</h2><ul>${getBehaviorSummary().map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="section"><h2>重大決策與事件</h2><ul>${timeline||'<li>無重大主動交易紀錄。</li>'}</ul></div><div class="section"><h2>客觀紀錄</h2><p>初始總資產：${money(state.initial.total)}<br>最終總資產：${money(totalAssets())}<br>期間新增本業現金：${money(state.totalCashflowAdded)}<br>總買進：${money(state.totalBought)}（${state.buyCount} 次）<br>總賣出：${money(state.totalSold)}（${state.sellCount} 次）<br>最低預備金：${money(state.minReserve)}<br>收入衝擊：${state.incomeShockCount?'有':'無'}</p></div><p class="meta">此報告為互動模擬與教育用途，不構成個人化投資建議。</p></body></html>`;
   }
   function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight,maxLines=3){
     const chars=[...String(text)]; let line='', lines=[];
@@ -1349,7 +1349,7 @@
   function buildShareCanvas(){
     const c=document.createElement('canvas'); c.width=1080;c.height=1350;const ctx=c.getContext('2d');const s=getScenario(),pl=equivalentInvestmentPL(),plPct=(state.portfolioIndex||100)-100,title=generatePlayerTitle();
     ctx.fillStyle='#0b0f14';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#121923';ctx.strokeStyle='#334155';ctx.lineWidth=3;roundRect(ctx,54,60,972,1230,34,true,true);
-    ctx.fillStyle='#94a3b8';ctx.font='700 30px sans-serif';ctx.fillText('投資壓力模擬器｜MVP 0.7.5',90,115);
+    ctx.fillStyle='#94a3b8';ctx.font='700 30px sans-serif';ctx.fillText('投資壓力模擬器｜MVP 0.7.5.1',90,115);
     ctx.fillStyle='#eef3f8';ctx.font='900 54px sans-serif';ctx.fillText('我的投資壓力測試結果',90,190);
     ctx.fillStyle='#fcd34d';ctx.font='800 25px sans-serif';ctx.fillText('本局稱號',90,250);ctx.fillStyle='#ffffff';ctx.font='900 62px sans-serif';ctx.fillText(title.title,90,320);
     ctx.fillStyle='#fde68a';ctx.font='700 24px sans-serif';ctx.fillText(title.tags.join(' ・ '),90,365);
